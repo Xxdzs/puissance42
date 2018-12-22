@@ -6,21 +6,23 @@
 /*   By: jates- <jates-@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/22 12:24:50 by jates-            #+#    #+#             */
-/*   Updated: 2018/12/22 16:28:10 by angagnie         ###   ########.fr       */
+/*   Updated: 2018/12/22 16:31:51 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "ft_array.h"
 #include "puissance.h"
+#include "ft_printf.h"
 
 #include <stdlib.h>
+#include <unistd.h>
 
 /*
 ** Fonction which initialize the main structure of puissance 4
 */
 
-void	new_game_state(void)
+t_game_state	new_game_state(void)
 {
 	return ((t_game_state){
 				NEW_ARRAY(enum e_player),
@@ -43,11 +45,11 @@ void			game_state_init(t_game_state *game)
 ** Fonction which prints the board
 */
 
-void	print_board(t_game_state *game)
+void			print_board(t_game_state *game)
 {
-	int i;
-	int j;
-	int	cell;
+	unsigned	i;
+	unsigned	j;
+	uint8_t		cell;
 
 	i = 0;
 	j = 0;
@@ -62,7 +64,7 @@ void	print_board(t_game_state *game)
 		while(j < game->width)
 		{
 			j++;
-			cell = ARRAY_GETT(uint8_t, &(game->board), game->width * i + j);
+			cell = ARRAY_GETL(uint8_t, &(game->board), game->width * i + j);
 			if (cell == EMPTY)
 				write(1, " ", 1);
 			else if (cell == HUMAN)
@@ -71,7 +73,7 @@ void	print_board(t_game_state *game)
 				write(1, "O", 1);
 		}
 		ft_printf("%d", (game->height - i) % 10);
-		i++
+		i++;
 		j = 0;
 	}
 	write(1, " ", 1);
