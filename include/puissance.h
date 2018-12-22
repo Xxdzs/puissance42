@@ -6,7 +6,7 @@
 /*   By: jates- <jates-@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/22 12:41:29 by jates-            #+#    #+#             */
-/*   Updated: 2018/12/22 18:13:59 by jates-           ###   ########.fr       */
+/*   Updated: 2018/12/22 22:09:10 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,22 +38,24 @@ enum	e_bot
 typedef struct	s_game_state
 {
 	t_array			board;
+	char			player_name[32];
 	unsigned		width;
 	unsigned		height;
+	char			jetons[3];
 	enum			e_player
 	{
 		EMPTY,
 		HUMAN,
 		BOT
 	}				start_player;
-	bool			is_debug;
 	enum e_bot		bot;
 	enum e_display	display;
-	char			player_name[32];
+	bool			is_debug;
 }				t_game_state;
 
 t_game_state	new_game_state(void);
 void			game_state_init(t_game_state *game);
+void			game_state_clear(t_game_state *game);
 
 uint8_t			bot_from_str(const char *str);
 uint8_t			display_from_str(const char *str);
