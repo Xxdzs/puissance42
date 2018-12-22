@@ -6,7 +6,7 @@
 /*   By: jates- <jates-@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/22 12:24:50 by jates-            #+#    #+#             */
-/*   Updated: 2018/12/22 22:11:22 by angagnie         ###   ########.fr       */
+/*   Updated: 2018/12/22 22:28:31 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,17 +29,17 @@ t_game_state	new_game_state(void)
 				.player_name = "Player",
 				.width = 7,
 				.height = 6,
-				.jetons = " XO"
+				.jetons = " XO",
 				.start_player = HUMAN,
 				.bot = BOT_GREEDY,
 				.display = DISPLAY_SIMPLE,
-				.is_debug = false,
+				.is_debug = false
 		});
 }
 
 void			game_state_init(t_game_state *game)
 {
-	size_t	size = game->width * game->height;
+	const size_t	size = game->width * game->height;
 
 	fta_reserve((t_array*)game, size);
 	game->board.size = size;
@@ -65,26 +65,21 @@ void			print_board(t_game_state *game)
 	uint8_t		cell;
 
 	i = 0;
-	j = 0;
-	write(1, " ", 1);
+	write(1, " ", 1 + (j = 0));
 	while (j++ < game->width)
 		ft_printf("%d", j % 10);
 	write(1, "\n", 1);
 	while (i < game->height)
 	{
-		j = 0;
-		ft_printf("%d", (game->height - i) % 10);
-		while (j < game->width)
+		ft_printf("%d", (game->height - i) % 10 + (j = 0));
+		while (j++ < game->width)
 		{
-			j++;
 			cell = ARRAY_GETL(uint8_t, &(game->board), game->width * i + j);
 			write(1, game->jetons + cell, 1);
 		}
-		ft_printf("%d\n", (game->height - i) % 10);
-		i++;
+		ft_printf("%d\n", (game->height - i++) % 10);
 	}
-	write(1, " ", 1);
-	j = 0;
+	write(1, " ", 1 + (j = 0));
 	while (j++ < game->width)
 		ft_printf("%d", j % 10);
 	write(1, "\n", 1);
