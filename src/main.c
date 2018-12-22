@@ -67,7 +67,7 @@ int			main(int ac, char** av)
 	const char		*name;
 	const char		*value;
 
-	game = (t_game_state){NEW_ARRAY(enum e_player), 7, 6, HUMAN, false};
+	game = new_game_state();
 	while (--ac > 0 && *++av != NULL)
 	{
 		is_long = false;
@@ -96,7 +96,7 @@ int			main(int ac, char** av)
 		ft_printf("\twith argument \"%s\"\n", value);
 		set_option_wp(&game, name, value, is_long);
 	}
-//	new_game_state(&game);
 	print_game(&game);
+	game_state_init(&game);
 	return (0);
 }
