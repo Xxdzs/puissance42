@@ -6,7 +6,7 @@
 /*   By: jates- <jates-@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/22 12:41:29 by jates-            #+#    #+#             */
-/*   Updated: 2018/12/22 15:40:32 by angagnie         ###   ########.fr       */
+/*   Updated: 2018/12/22 16:02:39 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define PUISSANCE_H
 
 # include "ft_array.h"
+
 # include <stdbool.h>
 # include <stdint.h>
 
@@ -49,5 +50,13 @@ typedef struct	s_game_state
 	enum e_bot		bot;
 	enum e_display	display;
 }				t_game_state;
+
+t_game_state	new_game_state(void);
+void			game_state_init(t_game_state *game);
+
+uint8_t			bot_from_str(const char *str);
+uint8_t			display_from_str(const char *str);
+const char		*str_from_bot(uint8_t bot);
+const char		*str_from_display(uint8_t display);
 
 #endif
