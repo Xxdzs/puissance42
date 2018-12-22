@@ -6,7 +6,7 @@
 #    By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/12/07 17:38:00 by angagnie          #+#    #+#              #
-#    Updated: 2018/12/22 16:58:39 by jates-           ###   ########.fr        #
+#    Updated: 2018/12/22 17:10:41 by jates-           ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -42,17 +42,17 @@ WHITE:="\033[1;37m"
 # ====== Auto ======
 SRC:=$(addprefix $(SRCPATH),$(addsuffix .c,$(FILES)))
 OBJ:=$(addprefix $(CCHPATH),$(addsuffix .o,$(FILES)))
-LIB:=$(addprefix $(LIBPATH)lib,$(addsuffix .a,$(LIBS)))
+LIB:=$(addprefix $(LIBPATH),$(LIB_FILES))
 # ==================
 
-#MAKEFLAGS+=-sj
+MAKEFLAGS+=-sj
 
 all: $(NAME)
 
 $(NAME): $(OBJ) $(LIB)
 	@echo $(EOC)
 	@echo $(CYAN) " - Compiling $@" $(EOC)
-	$(CC) $(CFLAGS) $^ -o $@
+	$(CC)  $^ -o $@
 	@echo $(GREEN) " - Done" $(EOC)
 
 $(CCHPATH)%.o: $(SRCPATH)%.c | $(CCHPATH)
