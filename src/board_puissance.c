@@ -6,18 +6,31 @@
 /*   By: jates- <jates-@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/22 12:24:50 by jates-            #+#    #+#             */
-/*   Updated: 2018/12/22 15:06:56 by jates-           ###   ########.fr       */
+/*   Updated: 2018/12/22 16:03:08 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include "ft_array.h"
 #include "puissance.h"
+
 #include <stdlib.h>
 
-void	new_game_state(t_game_state *game)
+t_game_state	new_game_state(void)
 {
-	game->board = *fta_alloc(game->width * game->height);
-	game->start_player = (rand() * 2) % 2 + HUMAN;
-
+	return ((t_game_state){
+				NEW_ARRAY(enum e_player),
+				7,
+				6,
+				HUMAN,
+				false,
+				BOT_NONE,
+				DISPLAY_NONE
+		});
 }
 
+void			game_state_init(t_game_state *game)
+{
+	fta_reserve((t_array*)game, game->width * game->height);
+	game->start_player = (rand() * 2) % 2 + HUMAN;
+}
