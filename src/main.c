@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@sudent.42.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/22 12:58:54 by angagnie          #+#    #+#             */
-/*   Updated: 2018/12/22 15:35:23 by angagnie         ###   ########.fr       */
+/*   Updated: 2018/12/22 18:59:05 by jates-           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,27 @@
 #include "ft_array.h"
 
 #include <stdbool.h>
+
+/*
+** Fonction gets the answer of the player
+*/
+
+void		get_player_name(t_game_state *game)
+{
+
+	printf("Hi! Let's play Connect Four together. First things first, what's your name?\t(maximum 32 characters)"\n);
+	while((ft_gnl(STDIN_FILENO, &(game->playds)))
+
+}
+
+void		get_player_move()
+{
+	uin8t	move;
+
+	move = 0;
+	printf("What are you going to play %s?\n", )
+}
+
 
 /*
 ** Options without parameters

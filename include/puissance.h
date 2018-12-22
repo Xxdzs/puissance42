@@ -6,7 +6,7 @@
 /*   By: jates- <jates-@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/22 12:41:29 by jates-            #+#    #+#             */
-/*   Updated: 2018/12/22 16:02:39 by angagnie         ###   ########.fr       */
+/*   Updated: 2018/12/22 18:13:59 by jates-           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ typedef struct	s_game_state
 	bool			is_debug;
 	enum e_bot		bot;
 	enum e_display	display;
+	char			player_name[32];
 }				t_game_state;
 
 t_game_state	new_game_state(void);
