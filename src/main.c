@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@sudent.42.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/22 12:58:54 by angagnie          #+#    #+#             */
-/*   Updated: 2018/12/22 18:59:05 by jates-           ###   ########.fr       */
+/*   Updated: 2018/12/22 22:23:23 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 ** Fonction gets the answer of the player
 */
 
+/*
 void		get_player_name(t_game_state *game)
 {
 
@@ -34,9 +35,9 @@ void		get_player_move()
 	uin8t	move;
 
 	move = 0;
-	printf("What are you going to play %s?\n", )
+	printf("What are you going to play ?\n")
 }
-
+*/
 
 /*
 ** Options without parameters
@@ -45,7 +46,7 @@ void		get_player_move()
 ** false otherwise
 */
 
-static bool	set_option(t_game_state *game, const char* name, bool is_long)
+static bool	set_option(t_game_state *game, const char *name, bool is_long)
 {
 	if (is_long && !ft_strcmp(name, "debug"))
 		game->is_debug = true;
@@ -58,8 +59,8 @@ static bool	set_option(t_game_state *game, const char* name, bool is_long)
 ** Options with parameters
 */
 
-static void	set_option_wp(t_game_state *game, const char* name,
-						const char* value, bool is_long)
+static void	set_option_wp(t_game_state *game, const char *name,
+						const char *value, bool is_long)
 {
 	if (*name == 'w' && !(is_long && ft_strcmp(name, "width")))
 		game->width = ft_atoi(value);
@@ -69,56 +70,60 @@ static void	set_option_wp(t_game_state *game, const char* name,
 		game->bot = bot_from_str(value);
 	else if (*name == 'd' && !(is_long && ft_strcmp(name, "display")))
 		game->display = display_from_str(value);
+	else if (*name == 'j' && !(is_long && ft_strcmp(name, "jetons")))
+		ft_memcpy(game->jetons, value, 3);
 }
 
 void		print_game(t_game_state *game)
 {
-	ft_printf("width : %u\n", game->width);
-	ft_printf("height : %u\n", game->height);
-	ft_printf("start_player : %hhu\n", game->start_player);
-	ft_printf("is_debug ? %s\n", game->is_debug ? "true" : "false");
-	ft_printf("bot : %s\n", str_from_bot(game->bot));
-	ft_printf("display : %s\n", str_from_display(game->display));
+	const unsigned length = 15;
+
+	ft_printf("\n%-*s : %u\n", length, "width", game->width);
+	ft_printf("%-*s : %u\n", length, "height", game->height);
+	ft_printf("%-*s : %hhu\n", length, "start_player", game->start_player);
+	ft_printf("%-*s : %s\n", length, "is_debug",
+		game->is_debug ? "true" : "false");
+	ft_printf("%-*s : %s\n", length, "bot", str_from_bot(game->bot));
+	ft_printf("%-*s : %s\n\n", length, "display",
+		str_from_display(game->display));
 }
 
-int			main(int ac, char** av)
+void		parse_arguments(t_game_state *game, int ac, char **av)
 {
-	t_game_state	game;
 	bool			is_long;
 	const char		*name;
 	const char		*value;
 
-	game = new_game_state();
-	while (--ac > 0 && *++av != NULL)
+	while (--ac && *++av)
 	{
-		is_long = false;
-		if (**av != '-')
+		if (!(is_long = false) && **av != '-')
 			continue ;
 		if (*++*av == '-' && (is_long = true) && *++*av == '\0')
 			break ;
-		name = *av;
-
-		if (is_long)
-			ft_printf("Option \"%s\"\n", name);
-		else
-			ft_printf("Option '%c'\n", *name);
-
-		if (set_option(&game, name, is_long))
+		if ((name = *av) && set_option(game, name, is_long))
 			continue ;
-
 		if (is_long)
-			value = (value = ft_strchr(*av, '=')) == NULL && ac-- ?
-					 *++av : value + 1;
+			if ((value = ft_strchr(*av, '=')) == NULL && ac--)
+				value = *++av;
+			else
+				*(char*)value++ = '\0';
 		else
 			value = (*++*av == '\0' && ac-- ? *++av : *av);
 		if (value == NULL)
 			value = "";
-
-		ft_printf("\twith argument \"%s\"\n", value);
-		set_option_wp(&game, name, value, is_long);
+		set_option_wp(game, name, value, is_long);
 	}
+}
+
+int			main(int ac, char **av)
+{
+	t_game_state	game;
+
+	game = new_game_state();
+	parse_arguments(&game, ac, av);
 	print_game(&game);
 	game_state_init(&game);
 	print_board(&game);
+	game_state_clear(&game);
 	return (0);
 }
