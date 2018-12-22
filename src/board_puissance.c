@@ -30,8 +30,8 @@ t_game_state	new_game_state(void)
 				6,
 				HUMAN,
 				false,
-				BOT_NONE,
-				DISPLAY_NONE
+				BOT_GREEDY,
+				DISPLAY_SIMPLE
 		});
 }
 
@@ -57,6 +57,7 @@ void			print_board(t_game_state *game)
 	write(1, " ", 1);
 	while (j++ < game->width)
 		ft_printf("%d", j % 10);
+	write(1, "\n", 1);
 	j = 0;
 	while(i < game->height)
 	{
@@ -72,11 +73,12 @@ void			print_board(t_game_state *game)
 			else if (cell == BOT)
 				write(1, "O", 1);
 		}
-		ft_printf("%d", (game->height - i) % 10);
+		ft_printf("%d\n", (game->height - i) % 10);
 		i++;
 		j = 0;
 	}
 	write(1, " ", 1);
 	while (j++ < game->width)
 		ft_printf("%d", j % 10);
+	write(1, "\n", 1);
 }

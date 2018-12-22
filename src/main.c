@@ -98,5 +98,6 @@ int			main(int ac, char** av)
 	}
 	print_game(&game);
 	game_state_init(&game);
+	print_board(&game);
 	return (0);
 }
