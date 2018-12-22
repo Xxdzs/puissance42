@@ -6,7 +6,7 @@
 #    By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/12/07 17:38:00 by angagnie          #+#    #+#              #
-#    Updated: 2018/12/22 16:20:45 by angagnie         ###   ########.fr        #
+#    Updated: 2018/12/22 16:58:39 by jates-           ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -15,7 +15,7 @@ NAME:=puissance4
 
 FILES= board_puissance main enum
 
-LIBS= ft
+LIB_FILES= libft.a
 # ==================
 
 # ==== Standard ====
@@ -49,10 +49,10 @@ LIB:=$(addprefix $(LIBPATH)lib,$(addsuffix .a,$(LIBS)))
 
 all: $(NAME)
 
-$(NAME): $(OBJ) | $(LIB)
+$(NAME): $(OBJ) $(LIB)
 	@echo $(EOC)
 	@echo $(CYAN) " - Compiling $@" $(EOC)
-	$(CC) $(LFLAGS) $^ -o $@
+	$(CC) $(CFLAGS) $^ -o $@
 	@echo $(GREEN) " - Done" $(EOC)
 
 $(CCHPATH)%.o: $(SRCPATH)%.c | $(CCHPATH)
@@ -62,9 +62,8 @@ $(CCHPATH)%.o: $(SRCPATH)%.c | $(CCHPATH)
 $(CCHPATH):
 	mkdir -p $@
 
-%.a:
+$(LIBPATH)%.a:
 	make -sC $(@D)
-	echo "Lib"
 
 clean:
 	rm -rf $(CCHPATH)
