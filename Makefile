@@ -6,20 +6,14 @@
 #    By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/12/07 17:38:00 by angagnie          #+#    #+#              #
-#    Updated: 2018/12/22 13:17:17 by jates-           ###   ########.fr        #
+#    Updated: 2018/12/22 15:08:51 by jates-           ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
 # ==== Editable ====
-NAME:=libft.a
+NAME:=puissance4
 
-FILES=ft_atoi ft_bzero ft_itoa ft_itoa_base ft_memalloc ft_memccpy ft_memchr \
-	ft_memdel ft_memcmp ft_memcpy ft_memmove ft_memset ft_memdup ft_putchar \
-	ft_putchar_fd ft_putendl ft_putendl_fd ft_putnbr ft_putnbr_fd ft_putstr \
-	ft_putstr_fd ft_realloc ft_print_memory ft_gnl ft_malloc ft_memswp \
-	ft_string is_refresh
-
-LIBFT_PATH:=libft/
+FILES= board_puissance 
 
 LIB_FILES= libtf.a
 # ==================
@@ -30,7 +24,7 @@ CCHPATH:=cache/
 SRCPATH:=src/
 LIBPATH:=libft/
 HDRPATH:=include/
-CFLAGS:=-Wall -Wextra -I $(HDRPATH) -ansi
+CFLAGS:=-Wall -Wextra -I $(HDRPATH) -I $(LIBPATH)$(HDRPATH) -ansi 
 # ==================
 
 # ===== Colors =====
@@ -56,7 +50,7 @@ all: $(NAME)
 $(NAME): $(OBJ) $(LIB)
 	@echo $(EOC)
 	@echo $(CYAN) " - Compiling $@" $(EOC)
-	ar rcs $@ $^
+	$(CC) $(CFLAGS) $< -o $@
 	@echo $(GREEN) " - Done" $(EOC)
 
 $(CCHPATH)%.o: $(SRCPATH)%.c | $(CCHPATH)
@@ -64,10 +58,10 @@ $(CCHPATH)%.o: $(SRCPATH)%.c | $(CCHPATH)
 	$(CC) $(CFLAGS) -c $< -o $@
 
 $(CCHPATH):
-	mkdir -p $(addprefix $@/,$(FOLDERS))
+	mkdir -p $@
 
 $(LIBPATH)%.a :
-	make -C $@(D)
+	make -C $(@D)
 
 clean:
 	rm -rf $(CCHPATH)

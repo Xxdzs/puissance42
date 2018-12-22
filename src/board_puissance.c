@@ -1,24 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   puissance.h                                        :+:      :+:    :+:   */
+/*   board_puissance.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jates- <jates-@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/12/22 12:41:29 by jates-            #+#    #+#             */
-/*   Updated: 2018/12/22 13:18:17 by jates-           ###   ########.fr       */
+/*   Created: 2018/12/22 12:24:50 by jates-            #+#    #+#             */
+/*   Updated: 2018/12/22 15:06:56 by jates-           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-typedef struct	s_game_state
+#include "libft.h"
+#include "puissance.h"
+#include <stdlib.h>
+
+void	new_game_state(t_game_state *game)
 {
-	t_array			board;
-	unsigned		width;
-	unsigned		height;
-	enum	 
-	{
-		EMPTY,
-		HUMAN,
-		BOT
-	}				start_player;		
-}				t_game_state;
+	game->board = *fta_alloc(game->width * game->height);
+	game->start_player = (rand() * 2) % 2 + HUMAN;
+
+}
+
