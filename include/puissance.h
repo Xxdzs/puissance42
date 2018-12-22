@@ -6,7 +6,7 @@
 /*   By: jates- <jates-@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/22 12:41:29 by jates-            #+#    #+#             */
-/*   Updated: 2018/12/22 22:09:10 by angagnie         ###   ########.fr       */
+/*   Updated: 2018/12/22 23:48:43 by jates-           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ enum	e_bot
 typedef struct	s_game_state
 {
 	t_array			board;
-	char			player_name[32];
+	char			*player_name;
 	unsigned		width;
 	unsigned		height;
 	char			jetons[3];

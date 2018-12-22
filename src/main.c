@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@sudent.42.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/22 12:58:54 by angagnie          #+#    #+#             */
-/*   Updated: 2018/12/22 22:23:23 by angagnie         ###   ########.fr       */
+/*   Updated: 2018/12/23 00:17:11 by jates-           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,23 +21,59 @@
 ** Fonction gets the answer of the player
 */
 
-/*
 void		get_player_name(t_game_state *game)
 {
 
-	printf("Hi! Let's play Connect Four together. First things first, what's your name?\t(maximum 32 characters)"\n);
-	while((ft_gnl(STDIN_FILENO, &(game->playds)))
+	int ret;
+	char *name;
 
+	ret = 0;
+	printf("Hi! Let's play Connect Four together. ")i;
+	ft_printf("First things first, what's your name ?\t(maximum 32 characters)\n");
+	while(1)
+	{
+		ret = get_next_line(STDIN_FILENO, &name);
+		if (ret == -1)
+		{
+			ft_printf(">>>>ERROR : get_next_line could not fetch the player name\n");
+			break;
+		}
+		else if (ret == 1 && ft_strlen(name) > 32)
+		{
+			ft_printf("Sorry, I did not understand.\n")
+			ft_printf("Could you tell me again your name ?\t(max 32 chars)\n");
+		}
+		else if (ret == 1)
+		{
+			game->player_name = name;
+			break;
+		}
+		else
+		{
+			ft_printf(">>>>ERROR : player name does have anything to read\n");
+			break;
+		}
+	}
+}
+
+bool		is_move_possible(t_game_state *game, unsigned col)
+{
+			if (col > width)
+				return (0);
+			else if (!(game->board-> )) //check that the cell col last ligne is empty
+				return (1);
+			else
+				return (0);							
 }
 
 void		get_player_move()
 {
-	uin8t	move;
+	uint8_t	move;
 
 	move = 0;
 	printf("What are you going to play ?\n")
 }
-*/
+
 
 /*
 ** Options without parameters
