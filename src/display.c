@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@sudent.42.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/23 12:07:04 by angagnie          #+#    #+#             */
-/*   Updated: 2018/12/23 14:09:39 by angagnie         ###   ########.fr       */
+/*   Updated: 2018/12/23 22:55:37 by jates-           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,12 +67,12 @@ static void			draw_ligne(size_t size, char c)
 			write(1, &c, 2048);
 	}
 	str[size] = '\n';
-		write(1, str, size + 1);
+	write(1, str, size + 1);
 }
 
 /*
-** Function which prints the values of each cell
-*/
+ ** Function which prints the values of each cell
+ */
 static void			print_board_numbers(const t_game_state *game)
 {
 	unsigned	i;

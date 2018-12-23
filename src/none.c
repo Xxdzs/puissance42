@@ -6,11 +6,11 @@
 /*   By: angagnie <angagnie@sudent.42.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/23 12:10:21 by angagnie          #+#    #+#             */
-/*   Updated: 2018/12/23 12:10:50 by angagnie         ###   ########.fr       */
+/*   Updated: 2018/12/23 22:53:36 by jates-           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-void	do_nothing_at_all()
+void	do_nothing_at_all(void)
 {
 	return ;
 }

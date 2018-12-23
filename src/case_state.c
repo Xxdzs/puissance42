@@ -24,11 +24,11 @@ bool		is_move_possible(const t_game_state *game, unsigned col)
 }
 
 /*
-** booleen function of the is_same_bool
+** booleen function of the same_bool
 ** return if (the cell == player)
 */
 
-bool		is_same_bool(t_game_state *game, int lig, int col, int8_t player)
+bool		same_bool(t_game_state *game, int lig, int col, int8_t player)
 {
 	int8_t	cell;
 
@@ -71,24 +71,24 @@ bool		iswin_case(t_game_state *game, int lig, int col, int8_t player)
 
 	n = -1;
 	i = -4;
-	while (++i < 4 && (is_same_bool(game, lig, col - i, player) || (n = -1)))
+	while (++i < 4 && (same_bool(game, lig, col - i, player) || (n = -1)))
 		++n;
 	if (n >= 4 && (i = -4))
 		return (true);
 	n = -1;
 	i = -4;
-	while (++i < 4 && (is_same_bool(game, lig - i,\
+	while (++i < 4 && (same_bool(game, lig - i,\
 					col - i, player) || (n = -1)))
 		++n;
 	if (n >= 4 && (i = -4))
 		return (true);
 	n = -1;
-	while (++i < 4 && (is_same_bool(game, lig + i, col - i, player) || (n = -1)))
+	while (++i < 4 && (same_bool(game, lig + i, col - i, player) || (n = -1)))
 		++n;
 	if (n >= 4 && (i = -4))
 		return (true);
 	n = -1;
-	while (++i < 0 && (is_same_bool(game, lig + i, col, player) || (n = -1)))
+	while (++i < 0 && (same_bool(game, lig + i, col, player) || (n = -1)))
 		++n;
 	return (n >= 4);
 }

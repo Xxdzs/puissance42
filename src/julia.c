@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@sudent.42.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/22 12:58:54 by angagnie          #+#    #+#             */
-/*   Updated: 2018/12/23 12:27:49 by angagnie         ###   ########.fr       */
+/*   Updated: 2018/12/23 22:44:08 by jates-           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,10 +40,8 @@ void		get_player_name(t_game_state *game)
 			break ;
 		}
 		else if (ret == 1 && ft_strlen(name) > 32)
-		{
-			ft_printf("Sorry, I did not understand.\n");
-			ft_printf("Could you tell me again your name ?\t(max 32 chars)\n");
-		}
+			ft_printf("Sorry, I did not understand.\n%s", \
+				"Could you tell me again your name ?\t(max 32 chars)\n");
 		else if (ret == 1)
 		{
 			game->player_name = name;
@@ -58,9 +56,9 @@ void		get_player_name(t_game_state *game)
 }
 
 /*
-** function which fetch the column selected by the player
-** return : -1 if wrong or the index of the column
-*/
+ ** function which fetch the column selected by the player
+ ** return : -1 if wrong or the index of the column
+ */
 
 int			get_player_move(t_game_state *game)
 {
@@ -81,7 +79,7 @@ int			get_player_move(t_game_state *game)
 			break ;
 		}
 		else if (ret == 1
-			&& (((move = ft_atoi(str)) < 1) || !is_move_possible(game, --move)))
+				&& (((move = ft_atoi(str)) < 1) || !is_move_possible(game, --move)))
 		{
 			ft_printf("Sorry, I did not understand.\n");
 			ft_printf("Could you tell me your choice ?\n");
@@ -98,8 +96,8 @@ int			get_player_move(t_game_state *game)
 }
 
 /*
-** custom made function to sleep
-*/
+ ** custom made function to sleep
+ */
 
 void ft_sleep(unsigned tempo)
 {
@@ -115,9 +113,9 @@ void ft_sleep(unsigned tempo)
 }
 
 /*
-** function which insert the move with the sensation of gravity
-** return the index of the ligne on which it was inserted
-*/
+ ** function which insert the move with the sensation of gravity
+ ** return the index of the ligne on which it was inserted
+ */
 
 unsigned	put_jeton_gravity(t_game_state *game, unsigned col, uint8_t player)
 {
@@ -130,7 +128,7 @@ unsigned	put_jeton_gravity(t_game_state *game, unsigned col, uint8_t player)
 		print_board(game);
 		while (lig + 1 < game->height && ARRAY_GETL(uint8_t, &game->board, game->width * lig + 1 + col) == EMPTY)
 		{
-			
+
 			ARRAY_GETL(uint8_t, &game->board, game->width * lig + col) = EMPTY;
 			lig++;
 			ARRAY_GETL(uint8_t, &game->board, game->width * lig + col) = player;
@@ -146,8 +144,8 @@ unsigned	put_jeton_gravity(t_game_state *game, unsigned col, uint8_t player)
 }
 
 /*
-** function which insert the jeton on the board
-*/
+ ** function which insert the jeton on the board
+ */
 
 bool		put_jeton(t_game_state *game, unsigned col, uint8_t player)
 {
@@ -160,7 +158,7 @@ bool		put_jeton(t_game_state *game, unsigned col, uint8_t player)
 	}
 	lig = 0;
 	while (lig + 1 < game->height && ARRAY_GETL(uint8_t, &game->board,
-		game->width * (lig + 1) + col) == EMPTY)
+				game->width * (lig + 1) + col) == EMPTY)
 		lig++;
 	ARRAY_GETL(uint8_t, &game->board, game->width * lig + col) = player;
 	return (true);

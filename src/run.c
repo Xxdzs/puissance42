@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@sudent.42.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/22 23:15:32 by angagnie          #+#    #+#             */
-/*   Updated: 2018/12/23 14:41:27 by angagnie         ###   ########.fr       */
+/*   Updated: 2018/12/23 22:53:04 by jates-           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,5 +45,6 @@ void		run_game(t_game_state *game)
 	if (game->winner == EMPTY)
 		ft_printf("Draw");
 	else
-		ft_printf("And the winner is : The %s\n", str_from_player(game->winner));
+		ft_printf("And the winner is : The %s\n",\
+				str_from_player(game->winner));
 }

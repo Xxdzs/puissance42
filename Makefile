@@ -16,6 +16,8 @@ NAME:=puissance4
 FILES= board_puissance \
 		case_state \
 		display \
+		display2 \
+		display3 \
 		enum \
 		julia \
 		main \
