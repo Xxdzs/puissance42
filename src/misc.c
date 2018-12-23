@@ -6,7 +6,7 @@
 /*   By: sid <angagnie@student.42.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/23 21:56:21 by sid               #+#    #+#             */
-/*   Updated: 2018/12/23 22:03:41 by sid              ###   ########.fr       */
+/*   Updated: 2018/12/23 22:09:47 by sid              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,10 @@ unsigned			column_top(const t_game_state *game, unsigned column)
 	unsigned	lign;
 
 	lign = game->height;
-	while (--lign > 0 && ARRAY_GETL(uint8_t,
-			(const t_array*)game, game->width * lign + column) == EMPTY)
-		;
-	if (ARRAY_GETL(uint8_t, (const t_array*)game, column) == EMPTY)
-		return (0);
+	while (lign-- > 0)
+		if (ARRAY_GETL(uint8_t, (const t_array*)game,
+					game->width * lign + column) == EMPTY)
+		return lign;
 	return (game->height);
 }
 

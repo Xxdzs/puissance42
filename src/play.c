@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@sudent.42.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/23 13:49:12 by angagnie          #+#    #+#             */
-/*   Updated: 2018/12/23 19:55:43 by sid              ###   ########.fr       */
+/*   Updated: 2018/12/23 22:11:03 by sid              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,9 @@ unsigned			play_greedy(t_game_state *game)
 	const t_array	layer = create_layer(game);
 	unsigned		col;
 
-	col = game->width;
-	while (col-- > 0)
-		ft_printf("%u ", ARRAY_GETL(unsigned, &layer, col));
+	col = 0;
+	while (col < game->width)
+		ft_printf("%u ", ARRAY_GETL(unsigned, &layer, col++));
 	fta_clear((t_array *)&layer);
 	ft_printf("\n");
 	return (0);
