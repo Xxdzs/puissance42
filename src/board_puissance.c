@@ -25,7 +25,7 @@
 t_game_state	new_game_state(void)
 {
 	return ((t_game_state){
-				.board = NEW_ARRAY(enum e_player),
+				.board = NEW_ARRAY(uint8_t),
 				.player_name = "Player",
 				.width = 7,
 				.height = 6,
