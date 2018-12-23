@@ -34,7 +34,7 @@ t_game_state	new_game_state(void)
 				.winner = EMPTY,
 				.bot = BOT_GREEDY,
 				.display = DISPLAY_SIMPLE,
-				.is_debug = false
+				.is_debug = false,
 				.is_colored = false
 		});
 }

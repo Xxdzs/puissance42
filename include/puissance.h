@@ -92,6 +92,7 @@ const char		*str_from_player(uint8_t player);
 ** Type of bots
 */
 
+unsigned		play_greedy(t_game_state *game);
 unsigned		play_random(t_game_state *game);
 unsigned		play_prompt(t_game_state *game);
 unsigned		play_bot(t_game_state *game);
@@ -106,6 +107,8 @@ unsigned		put_jeton_gravity(t_game_state *game,
 			unsigned col, uint8_t player);
 bool			put_jeton(t_game_state *game,
 			unsigned col, uint8_t player);
+unsigned		column_top(const t_game_state *game, unsigned column);
+t_array			create_layer(const t_game_state *game);
 
 /*
 ** Misc. utils
