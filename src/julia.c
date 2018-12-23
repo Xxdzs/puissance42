@@ -97,6 +97,10 @@ int			get_player_move(t_game_state *game)
 	return (-1);
 }
 
+/*
+** custom made function to wait
+*/
+
 void		ft_wait(unsigned time)
 {
 	unsigned idx;
