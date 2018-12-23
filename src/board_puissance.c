@@ -6,7 +6,7 @@
 /*   By: jates- <jates-@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/22 12:24:50 by jates-            #+#    #+#             */
-/*   Updated: 2018/12/23 12:55:04 by jates-           ###   ########.fr       */
+/*   Updated: 2018/12/23 14:04:28 by jates-           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,7 @@ void			print_board1(const t_game_state *game)
 /*
 ** Function which prints the board more beautifully
 */
+
 static void		draw_ligne(size_t size, char c)
 {
 	char str[2048];
@@ -102,7 +103,7 @@ static void		draw_ligne(size_t size, char c)
 			write(1, &c, 2048);
 	}
 	str[size] = '\n';
-		write(1, str, size + 1);
+	write(1, str, size + 1);
 }
 
 void			print_board2(const t_game_state *game)
@@ -112,7 +113,6 @@ void			print_board2(const t_game_state *game)
 	uint8_t		cell;
 
 	i = 0;
-
 	draw_ligne(game->width * 4 + 1, '_');
 	write(1, "|   ", 4 + (j = 0));
 	while (j++ < game->width)
