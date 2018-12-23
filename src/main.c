@@ -57,6 +57,8 @@ void		get_player_name(t_game_state *game)
 	}
 }
 
+
+
 /*
 ** booleen function which test if the column is empty or not i.e is it 
 ** possible to play or not.
@@ -256,8 +258,8 @@ int			main(int ac, char **av)
 	srand(time(NULL));
 	*game = new_game_state();
 	parse_arguments(game, ac, av);
-	print_game(game);
 	game_state_init(game);
+	print_game(game);
 	game->bot = BOT_RANDOM;
 //	run_game(game);
 	game_state_clear(game);

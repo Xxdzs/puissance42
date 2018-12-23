@@ -20,6 +20,16 @@ bool	play_round(t_game_state *game, uint8_t player)
 	ft_printf("%s\n", player)
 }
 
+unsigned play_random(t_game_state *game)
+{
+	unsigned move;
+
+	move = rand() % game->width;
+	while(!is_move_possible(game, move))
+		move = rand() % game->width;
+	return (move);
+}
+
 void	run_game(t_game_state *game)
 {
 	unsigned	turn;
