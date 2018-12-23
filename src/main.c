@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@sudent.42.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/22 12:58:54 by angagnie          #+#    #+#             */
-/*   Updated: 2018/12/23 13:23:17 by jates-           ###   ########.fr       */
+/*   Updated: 2018/12/23 14:10:13 by jates-           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ int			get_player_move(t_game_state *game)
 		if (ret == -1)
 		{
 			ft_printf(">>ERROR : get_next_line could not fetch the column\n");
-			break;
+			break ;
 		}
 		else if (ret == 1
 			&& (((move = ft_atoi(str)) < 1) || !is_move_possible(game, --move)))
@@ -121,7 +121,7 @@ unsigned	put_jeton_gravity(t_game_state *game, unsigned col, uint8_t player)
 	lig = 0;
 	if (game && player != EMPTY && is_move_possible(game, col)) //not necesserary just for debugging
 	{
-		//put player on lig col
+//	put player on lig col
 		print_board1(game);
 		while (lig + 1 < game->height && ARRAY_GETL(uint8_t, &game->board, game->width * lig + 1 + col) == EMPTY)
 		{
