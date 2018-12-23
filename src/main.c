@@ -121,14 +121,14 @@ unsigned	put_jeton_gravity(t_game_state *game, unsigned col, uint8_t player)
 	lig = 0;
 	if (game && player != EMPTY && is_move_possible(game, col)) //not necesserary just for debugging
 	{
-//	put player on lig col
+		ARRAY_GETL(uint8_t, &game->board, game->width * lig + col) = player;
 		print_board1(game);
 		while (lig + 1 < game->height && ARRAY_GETL(uint8_t, &game->board, game->width * lig + 1 + col) == EMPTY)
 		{
 			ft_wait(42);
-			//put empty on lig col
+			ARRAY_GETL(uint8_t, &game->board, game->width * lig + col) = EMPTY;
 			lig++;
-			//put player on lig col
+			ARRAY_GETL(uint8_t, &game->board, game->width * lig + col) = player;
 			print_board1(game);
 		}
 		return (lig);
@@ -152,7 +152,7 @@ unsigned	put_jeton(t_game_state *game, unsigned col, uint8_t player)
 	{
 		while (lig + 1 < game->height && ARRAY_GETL(uint8_t, &game->board, game->width * lig + 1 + col) == EMPTY)
 			lig++;
-		//put player on lig col
+		ARRAY_GETL(uint8_t, &game->board, game->width * lig + col) = player;
 		print_board1(game);
 		return (lig);
 	}
@@ -163,7 +163,7 @@ unsigned	put_jeton(t_game_state *game, unsigned col, uint8_t player)
 
 /*
 ** Options without parameters
-** -
+** 
 ** returns true if the name matches with an existing option,
 ** false otherwise
 */

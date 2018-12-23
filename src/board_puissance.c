@@ -113,26 +113,26 @@ void			print_board2(const t_game_state *game)
 	uint8_t		cell;
 
 	i = 0;
-	draw_ligne(game->width * 4 + 1, '_');
+	draw_ligne((game->width + 2) * 4 + 1, '+');
 	write(1, "|   ", 4 + (j = 0));
 	while (j++ < game->width)
 		ft_printf("|% 3d", j % 1000);
-	write(1, "|\n", 2);
-	draw_ligne(game->width * 4 + 1, '_');
+	write(1, "|   |\n", 6);
+	draw_ligne((game->width + 2) * 4 + 1, '+');
 	while (i < game->height)
 	{
 		ft_printf("|% 3d", (game->height - i) % 1000 + (j = 0));
 		while (j++ < game->width)
 		{
 			cell = ARRAY_GETL(uint8_t, (const t_array*)game, game->width * i + j);
-			ft_printf("| %hhu ", cell, 1);
+			ft_printf("| %c ", game->jetons[cell]);
 		}
 		ft_printf("|% 3d|\n", (game->height - i++) % 1000);
-		draw_ligne(game->width * 4 + 1, '_');
+		draw_ligne((game->width + 2) * 4 + 1, '+');
 	}
-	write(1, "|   |", 4 + (j = 0));
+	write(1, "|   ", 5 + (j = 0));
 	while (j++ < game->width)
 		ft_printf("|% 3d", j % 1000);
-	write(1, "\n", 1);
-	draw_ligne(game->width * 4 + 1, '_');
+	write(1, "|   |\n", 6);
+	draw_ligne((game->width + 2) * 4 + 1, '+');
 }
