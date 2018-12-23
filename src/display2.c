@@ -54,3 +54,37 @@ void			ft_sleep(unsigned tempo)
 		idx = 1;
 	}
 }
+
+/*
+** function which insert the move with the sensation of gravity
+** return the index of the ligne on which it was inserted
+*/
+
+unsigned		put_jeton_gravity(t_game_state *game,\
+				unsigned col, uint8_t player)
+{
+	unsigned lig;
+
+	lig = 0;
+	if (game && player != EMPTY && is_move_possible(game, col)) /* not necesserary just for debugging */
+	{
+		ARRAY_GETL(uint8_t, &game->board, game->width * lig + col) = player;
+		print_board(game);
+		while (lig + 1 < game->height \
+		&& ARRAY_GETL(uint8_t, &game->board, game->width * lig + 1 + col) == EMPTY)
+		{
+
+			ARRAY_GETL(uint8_t, &game->board, game->width * lig + col) = EMPTY;
+			lig++;
+			ARRAY_GETL(uint8_t, &game->board, game->width * lig + col) = player;
+			ft_sleep(1848);
+			ft_printf("\033[%dA", \
+			(game->display == 1) ? game->height + 2 : game->height * 4 + 1);
+			print_board(game);
+		}
+		return (lig);
+	}
+	else
+		ft_printf(">>ERROR : jeton gravity has wrong input\n");
+	return (lig);
+}

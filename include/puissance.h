@@ -77,6 +77,8 @@ unsigned		play_bot(t_game_state *game);
 unsigned		play_prompt(t_game_state *game);
 bool			iswin_case(const t_game_state *game, int lig,
 				int col, int8_t player);
+void			draw_ligne(size_t size, char c);
+void			ft_sleep(unsigned tempo);
 
 /*
 ** Enum conversion functions

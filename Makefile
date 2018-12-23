@@ -19,7 +19,6 @@ FILES= board_puissance \
 		display2 \
 		display3 \
 		enum \
-		julia \
 		main \
 		none \
 		play \
