@@ -90,10 +90,11 @@ static void			print_board_numbers(const t_game_state *game)
 	while (i < game->height)
 	{
 		ft_printf("|% 3d", (game->height - i) % 1000 + (j = 0));
-		while (j++ < game->width)
+		while (j < game->width)
 		{
 			cell = ARRAY_GETL(uint8_t, (const t_array*)game, game->width * i + j);
 			ft_printf("| %hhu ", cell, 1);
+			j++;
 		}
 		ft_printf("|% 3d|\n", (game->height - i++) % 1000);
 		draw_ligne(game->width * 4 + 1, '_');
