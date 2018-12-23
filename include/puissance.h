@@ -64,6 +64,8 @@ const char		*str_from_bot(uint8_t bot);
 const char		*str_from_display(uint8_t display);
 const char		*str_from_player(uint8_t player);
 
+bool			is_move_possible(t_game_state *game, unsigned col);
+
 void			print_board1(const t_game_state *game);
 void			print_board2(const t_game_state *game);
 

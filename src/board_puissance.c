@@ -6,7 +6,7 @@
 /*   By: jates- <jates-@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/22 12:24:50 by jates-            #+#    #+#             */
-/*   Updated: 2018/12/22 22:28:31 by angagnie         ###   ########.fr       */
+/*   Updated: 2018/12/23 12:55:04 by jates-           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
 t_game_state	new_game_state(void)
 {
 	return ((t_game_state){
-				.board = NEW_ARRAY(enum e_player),
+				.board = NEW_ARRAY(uint8_t),
 				.player_name = "Player",
 				.width = 7,
 				.height = 6,
@@ -72,10 +72,11 @@ void			print_board1(const t_game_state *game)
 	while (i < game->height)
 	{
 		ft_printf("%d", (game->height - i) % 10 + (j = 0));
-		while (j++ < game->width)
+		while (j < game->width)
 		{
 			cell = ARRAY_GETL(uint8_t, &(game->board), game->width * i + j);
 			write(1, game->jetons + cell, 1);
+			j++;
 		}
 		ft_printf("%d\n", (game->height - i++) % 10);
 	}
@@ -123,8 +124,8 @@ void			print_board2(const t_game_state *game)
 		ft_printf("|% 3d", (game->height - i) % 1000 + (j = 0));
 		while (j++ < game->width)
 		{
-			cell = ARRAY_GETL(uint8_t, &(game->board), game->width * i + j);
-			ft_printf("| %d ", (game->jetons + cell), 1);
+			cell = ARRAY_GETL(uint8_t, (const t_array*)game, game->width * i + j);
+			ft_printf("| %hhu ", cell, 1);
 		}
 		ft_printf("|% 3d|\n", (game->height - i++) % 1000);
 		draw_ligne(game->width * 4 + 1, '_');

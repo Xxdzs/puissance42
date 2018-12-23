@@ -196,22 +196,24 @@ static void	set_option_wp(t_game_state *game, const char *name,
 	else if (*name == 'd' && !(is_long && ft_strcmp(name, "display")))
 		game->display = display_from_str(value);
 	else if (*name == 'j' && !(is_long && ft_strcmp(name, "jetons")))
-		ft_memcpy(game->jetons, value, 3);
+		ft_strncpy(game->jetons, value, 3);
 }
 
-void		print_game(t_game_state *game)
+void		print_game(const t_game_state *game)
 {
 	const unsigned length = 12;
 
-	ft_printf("\n%-*s : %u\n", length, "width", game->width);
+	ft_printf("\n%-*s : %s\n", length, "player_name", game->player_name);
+	ft_printf("%-*s : %u\n", length, "width", game->width);
 	ft_printf("%-*s : %u\n", length, "height", game->height);
-	ft_printf("%-*s : %hhd\n", length, "start_player", game->start_player);
-	ft_printf("%-*s : %c\n", length, "jeton", game->jetons[game->start_player]);
-	ft_printf("%-*s : %s\n", length, "is_debug",
-		game->is_debug ? "true" : "false");
+	ft_printf("%-*s : %s\n", length, "start_player", str_from_player(game->start_player));
+	ft_printf("%-*s : %c\n", length, "start jeton", game->jetons[game->start_player]);
 	ft_printf("%-*s : %s\n", length, "bot", str_from_bot(game->bot));
 	ft_printf("%-*s : %s\n\n", length, "display",
 		str_from_display(game->display));
+	ft_printf("%-*s : %s\n", length, "is_debug",
+		game->is_debug ? "true" : "false");
+	ft_printf("%s\n", fta_string((const t_array *)game, tmp_cell_to_string));
 }
 
 static void	parse_arguments(t_game_state *game, int ac, char **av)
