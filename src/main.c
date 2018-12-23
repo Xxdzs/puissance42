@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@sudent.42.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/22 12:58:54 by angagnie          #+#    #+#             */
-/*   Updated: 2018/12/23 01:49:49 by jates-           ###   ########.fr       */
+/*   Updated: 2018/12/23 02:05:38 by jates-           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 #include "ft_array.h"
 #include "get_next_line.h"
 #include <stdbool.h>
+#include <time.h>
 
 /*
 ** Fonction gets the answer of the player
@@ -106,6 +107,70 @@ int	get_player_move(t_game_state *game)
 	return (-1);
 }
 
+void ft_wait(unsigned time)
+{
+	unsigned idx;
+
+	idx = 1;
+	while (time--)
+	{
+		while(idx++)
+			;
+		idx = 1;
+	}
+}
+
+/*
+** function which insert the move with the sensation of gravity
+** return the index of the ligne on which it was inserted
+*/
+
+unsigned put_jeton_gravity(t_game_state *game, unsigned col, uint8_t player)
+{
+	unsigned lig;
+
+	lig = 0;
+	if (game && player != EMPTY && is_move_possible(game, col)) //not necesserary just for debugging
+	{
+		//put player on lig col
+		print_board(game);
+		while (lig + 1 < game->height && ARRAY_GETL(uint8_t, &game->board, game->width * lig + 1 + col) == EMPTY)
+		{	
+			ft_wait(42);
+			//put empty on lig col
+			lig++;
+			//put player on lig col
+			print_board(game);
+		}
+		return (lig);
+	}
+	else 
+		ft_printf(">>>>ERROR : jeton gravity has wrong input\n");
+	return (lig);
+}
+
+/*
+** function which insert the jeton on the board
+** return the index of the ligne on which it was inserted
+*/
+
+unsigned put_jeton(t_game_state *game, unsigned col, uint8_t player)
+{
+	unsigned lig;
+
+	lig = 0;
+	if (game && player != EMPTY && is_move_possible(game, col)) //not necesserary just for debugging
+	{
+		while (lig + 1 < game->height && ARRAY_GETL(uint8_t, &game->board, game->width * lig + 1 + col) == EMPTY)
+			lig++;
+		//put player on lig col
+		print_board(game);
+		return (lig);
+	}
+	else 
+		ft_printf(">>>>ERROR : jeton insert has wrong input\n");
+	return (lig);
+}
 
 /*
 ** Options without parameters
@@ -148,7 +213,8 @@ void		print_game(t_game_state *game)
 
 	ft_printf("\n%-*s : %u\n", length, "width", game->width);
 	ft_printf("%-*s : %u\n", length, "height", game->height);
-	ft_printf("%-*s : %hhu\n", length, "start_player", game->start_player);
+	ft_printf("%-*s : %hhd\n", length, "start_player", game->start_player);
+	ft_printf("%-*s : %c\n", length, "jeton", game->jetons[game->start_player]);
 	ft_printf("%-*s : %s\n", length, "is_debug",
 		game->is_debug ? "true" : "false");
 	ft_printf("%-*s : %s\n", length, "bot", str_from_bot(game->bot));
@@ -187,10 +253,12 @@ int			main(int ac, char **av)
 {
 	t_game_state	game[1];
 
+	srand(time(NULL));
 	*game = new_game_state();
 	parse_arguments(game, ac, av);
 	print_game(game);
 	game_state_init(game);
+	game->bot = BOT_RANDOM;
 //	run_game(game);
 	game_state_clear(game);
 	return (0);
