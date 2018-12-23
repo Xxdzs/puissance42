@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/18 18:09:32 by angagnie          #+#    #+#             */
-/*   Updated: 2018/12/07 18:07:00 by angagnie         ###   ########.fr       */
+/*   Updated: 2018/12/23 12:20:56 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@
 ** Returns a string representing the given array.
 */
 
-char	*fta_string(t_array *self, char *(*f)(void *))
+char	*fta_string(const t_array *self, char *(*f)())
 {
 	t_string	ans[1];
 	void		*iterator;

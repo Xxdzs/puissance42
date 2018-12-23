@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/24 13:50:45 by angagnie          #+#    #+#             */
-/*   Updated: 2017/03/30 17:50:01 by angagnie         ###   ########.fr       */
+/*   Updated: 2018/12/23 12:20:42 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -451,7 +451,7 @@ void			fta_iteri2(const t_array *self, void (*f)(), void *a, void *b);
 ** Returns a string representing the given array.
 */
 
-char			*fta_string(t_array *self, char *(*f)(void *));
+char			*fta_string(const t_array *self, char *(*f)());
 
 /*
 ** |		----------===== private: =====----------
