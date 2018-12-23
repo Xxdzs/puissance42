@@ -22,7 +22,8 @@ FILES= board_puissance \
 		none \
 		play \
 		run  \
-		misc
+		misc \
+		debug
 
 LIB_FILES= libft.a
 # ==================
