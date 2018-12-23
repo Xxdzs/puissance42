@@ -33,16 +33,29 @@ unsigned			play_prompt(t_game_state *game)
 	return (ret < 0 ? game->width : (unsigned)ret);
 }
 
+unsigned			winning_column(const t_game_state *game,
+							const t_array *layer,
+							uint8_t player)
+{
+	unsigned	col;
+
+	col = game->width;
+	while (col-- > 0)
+		if (iswin_case(game, ARRAY_GETL(unsigned, layer, col), col, player))
+			return (col);
+	return (game->width);
+}
+
 unsigned			play_greedy(t_game_state *game)
 {
 	const t_array	layer = create_layer(game);
 	unsigned		col;
 
-	col = 0;
-	while (col < game->width)
-		ft_printf("%u ", ARRAY_GETL(unsigned, &layer, col++));
+	if ((col = winning_column(game, &layer, BOT)) < game->width)
+		return (col);
+	if ((col = winning_column(game, &layer, HUMAN)) < game->width)
+		return (col);
 	fta_clear((t_array *)&layer);
-	ft_printf("\n");
 	return (0);
 }
 
