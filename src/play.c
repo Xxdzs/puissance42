@@ -30,13 +30,9 @@ unsigned			play_random(t_game_state *game)
 
 unsigned			play_prompt(t_game_state *game)
 {
-	char	*line;
-	int		ans;
+	const int ret = get_player_move(game);
 
-	if (get_next_line(0, &line) < 0)
-		return (0);
-	ans = ft_atoi(line) - 1;
-	return (0 <= ans && (unsigned)ans < game->width ? ans : 0);
+	return (ret < 0 ? game->width : (unsigned)ret);
 }
 
 unsigned			play_bot(t_game_state *game)

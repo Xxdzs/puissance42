@@ -70,8 +70,8 @@ const char	*str_from_player(uint8_t player)
 {
 	const char *const players_str[] = {
 		"EMPTY",
-		"HUMAN",
-		"BOT"
+		"Human",
+		"Bot"
 	};
 
 	if (player <= BOT)

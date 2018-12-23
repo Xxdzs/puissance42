@@ -18,12 +18,18 @@
 
 bool		play_round(t_game_state *game, uint8_t player)
 {
-	unsigned	column;
+	unsigned			column;
+	const char *const	player_str = str_from_player(player);
 
 	print_board(game);
-	ft_printf("It is the %s's turn\n", str_from_player(player));
+	ft_printf("It is the %s's turn\n", player_str);
 	column = (player == HUMAN ? play_prompt(game) : play_bot(game));
-	put_jeton(game, column, player);
+	if (!put_jeton(game, column, player))
+	{
+		ft_printf("The %s played a wrong move, and lost\n", player_str);
+		game->winner = (player == BOT ? HUMAN : BOT);
+		return (false);
+	}
 	return (true);
 }
 
@@ -31,10 +37,13 @@ void		run_game(t_game_state *game)
 {
 	unsigned	turn;
 
-	get_player_name(game);
 	turn = 0;
 	while (turn < 42 && play_round(game,
 			HUMAN + ((turn + (game->start_player == BOT)) % 2)))
 		turn++;
 	print_board(game);
+	if (game->winner == EMPTY)
+		ft_printf("Draw");
+	else
+		ft_printf("And the winner is : The %s\n", str_from_player(game->winner));
 }

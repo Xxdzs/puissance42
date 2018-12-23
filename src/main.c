@@ -54,29 +54,9 @@ static void	set_option_wp(t_game_state *game, const char *name,
 		ft_strncpy(game->jetons, value, 3);
 }
 
-static char *tmp_cell_to_string(uint8_t *cell)
-{
-	const char *str = str_from_player(*cell);
-
-	return (ft_strdup(str ? str : "!"));
-}
-
-void		print_game(const t_game_state *game)
-{
-	const unsigned length = 12;
-
-	ft_printf("\n%-*s : %s\n", length, "player_name", game->player_name);
-	ft_printf("%-*s : %u\n", length, "width", game->width);
-	ft_printf("%-*s : %u\n", length, "height", game->height);
-	ft_printf("%-*s : %s\n", length, "start_player", str_from_player(game->start_player));
-	ft_printf("%-*s : %c\n", length, "start jeton", game->jetons[game->start_player]);
-	ft_printf("%-*s : %s\n", length, "bot", str_from_bot(game->bot));
-	ft_printf("%-*s : %s\n", length, "display",
-		str_from_display(game->display));
-	ft_printf("%-*s : %s\n", length, "is_debug",
-		game->is_debug ? "true" : "false");
-	ft_printf("%s\n\n", fta_string((const t_array *)game, tmp_cell_to_string));
-}
+/*
+** Sets the environnement from the program arguments
+*/
 
 static void	parse_arguments(t_game_state *game, int ac, char **av)
 {
@@ -114,7 +94,7 @@ int			main(int ac, char **av)
 	parse_arguments(game, ac, av);
 	game_state_init(game);
 	if (game->is_debug)
-		print_game(game);
+		print_game_state(game);
 	run_game(game);
 	game_state_clear(game);
 	return (0);

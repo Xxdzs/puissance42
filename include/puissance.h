@@ -51,6 +51,7 @@ typedef struct	s_game_state
 	unsigned		height;
 	char			jetons[3];
 	enum e_player	start_player;
+	enum e_player	winner;
 	enum e_bot		bot;
 	enum e_display	display;
 	bool			is_debug;
@@ -102,9 +103,14 @@ void			get_player_name(t_game_state *game);
 int				get_player_move(t_game_state *game);
 unsigned		put_jeton_gravity(t_game_state *game,
 			unsigned col, uint8_t player);
-unsigned		put_jeton(t_game_state *game,
+bool			put_jeton(t_game_state *game,
 			unsigned col, uint8_t player);
 
+/*
+** Misc. utils
+*/
+
 void			do_nothing_at_all();
+void			print_game_state(const t_game_state *game);
 
 #endif

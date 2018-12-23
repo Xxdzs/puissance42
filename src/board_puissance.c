@@ -31,6 +31,7 @@ t_game_state	new_game_state(void)
 				.height = 6,
 				.jetons = " XO",
 				.start_player = HUMAN,
+				.winner = EMPTY,
 				.bot = BOT_GREEDY,
 				.display = DISPLAY_SIMPLE,
 				.is_debug = false

@@ -77,7 +77,7 @@ int			get_player_move(t_game_state *game)
 		ret = get_next_line(STDIN_FILENO, &str);
 		if (ret == -1)
 		{
-			ft_printf(">>ERROR : get_next_line could not fetch the column\n");
+			ft_dprintf(2, ">>ERROR : get_next_line could not fetch the column\n");
 			break ;
 		}
 		else if (ret == 1
@@ -90,7 +90,7 @@ int			get_player_move(t_game_state *game)
 			return (move);
 		else
 		{
-			ft_printf(">>ERROR : player column fetch does have anything to read\n");
+			ft_dprintf(2, ">>ERROR : player column fetch does have anything to read\n");
 			break ;
 		}
 	}
@@ -145,24 +145,21 @@ unsigned	put_jeton_gravity(t_game_state *game, unsigned col, uint8_t player)
 
 /*
 ** function which insert the jeton on the board
-** return the index of the ligne on which it was inserted
 */
 
-unsigned	put_jeton(t_game_state *game, unsigned col, uint8_t player)
+bool		put_jeton(t_game_state *game, unsigned col, uint8_t player)
 {
 	unsigned lig;
 
-	lig = 0;
-	/* not necesserary just for debugging */
-	if (game && player != EMPTY && is_move_possible(game, col))
+	if (!(game && player != EMPTY && is_move_possible(game, col)))
 	{
-		while (lig + 1 < game->height && ARRAY_GETL(uint8_t, &game->board,
-			game->width * (lig + 1) + col) == EMPTY)
-			lig++;
-		ARRAY_GETL(uint8_t, &game->board, game->width * lig + col) = player;
-		return (lig);
-	}
-	else
 		ft_dprintf(2, ">>ERROR : jeton insert has wrong input\n");
-	return (lig);
+		return (false);
+	}
+	lig = 0;
+	while (lig + 1 < game->height && ARRAY_GETL(uint8_t, &game->board,
+		game->width * (lig + 1) + col) == EMPTY)
+		lig++;
+	ARRAY_GETL(uint8_t, &game->board, game->width * lig + col) = player;
+	return (true);
 }
