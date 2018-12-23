@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@sudent.42.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/23 12:07:04 by angagnie          #+#    #+#             */
-/*   Updated: 2018/12/23 12:13:54 by angagnie         ###   ########.fr       */
+/*   Updated: 2018/12/23 14:09:39 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,7 @@ static void			print_board_numbers(const t_game_state *game)
 
 void				print_board(const t_game_state *game)
 {
-	void (*functions[])() = {
+	void (*const functions[])() = {
 		&do_nothing_at_all,
 		&print_board_simple,
 		&print_board_numbers

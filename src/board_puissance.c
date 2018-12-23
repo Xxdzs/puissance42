@@ -6,7 +6,7 @@
 /*   By: jates- <jates-@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/22 12:24:50 by jates-            #+#    #+#             */
-/*   Updated: 2018/12/23 12:29:22 by angagnie         ###   ########.fr       */
+/*   Updated: 2018/12/23 13:54:22 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,8 @@ void			game_state_init(t_game_state *game)
 {
 	const size_t	size = game->width * game->height;
 
-	fta_reserve((t_array*)game, size);
+	if (fta_reserve((t_array*)game, size) != 0)
+		return ;
 	game->board.size = size;
 	ft_memset(game->board.data, 0, size * game->board.type_size);
 	game->start_player = (rand() % 2) ? HUMAN : BOT;
