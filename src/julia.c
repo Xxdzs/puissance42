@@ -153,15 +153,16 @@ unsigned	put_jeton(t_game_state *game, unsigned col, uint8_t player)
 	unsigned lig;
 
 	lig = 0;
-	if (game && player != EMPTY && is_move_possible(game, col)) /* not necesserary just for debugging */
+	/* not necesserary just for debugging */
+	if (game && player != EMPTY && is_move_possible(game, col))
 	{
-		while (lig + 1 < game->height && ARRAY_GETL(uint8_t, &game->board, game->width * lig + 1 + col) == EMPTY)
+		while (lig + 1 < game->height && ARRAY_GETL(uint8_t, &game->board,
+			game->width * (lig + 1) + col) == EMPTY)
 			lig++;
 		ARRAY_GETL(uint8_t, &game->board, game->width * lig + col) = player;
-		print_board(game);
 		return (lig);
 	}
 	else
-		ft_printf(">>ERROR : jeton insert has wrong input\n");
+		ft_dprintf(2, ">>ERROR : jeton insert has wrong input\n");
 	return (lig);
 }

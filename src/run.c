@@ -23,6 +23,7 @@ bool		play_round(t_game_state *game, uint8_t player)
 	print_board(game);
 	ft_printf("It is the %s's turn\n", str_from_player(player));
 	column = (player == HUMAN ? play_prompt(game) : play_bot(game));
+	put_jeton(game, column, player);
 	return (true);
 }
 
@@ -32,7 +33,7 @@ void		run_game(t_game_state *game)
 
 	get_player_name(game);
 	turn = 0;
-	while (turn < 5 && play_round(game,
+	while (turn < 42 && play_round(game,
 			HUMAN + ((turn + (game->start_player == BOT)) % 2)))
 		turn++;
 	print_board(game);
