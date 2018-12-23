@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@sudent.42.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/22 23:15:32 by angagnie          #+#    #+#             */
-/*   Updated: 2018/12/23 14:14:33 by angagnie         ###   ########.fr       */
+/*   Updated: 2018/12/23 14:41:27 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 #include <stdbool.h>
 #include <stdlib.h>
 
-bool	play_round(t_game_state *game, uint8_t player)
+bool		play_round(t_game_state *game, uint8_t player)
 {
 	unsigned	column;
 
@@ -26,7 +26,7 @@ bool	play_round(t_game_state *game, uint8_t player)
 	return (true);
 }
 
-void	run_game(t_game_state *game)
+void		run_game(t_game_state *game)
 {
 	unsigned	turn;
 

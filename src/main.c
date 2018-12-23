@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@sudent.42.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/22 12:58:54 by angagnie          #+#    #+#             */
-/*   Updated: 2018/12/23 07:58:39 by jates-           ###   ########.fr       */
+/*   Updated: 2018/12/23 14:10:13 by jates-           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,20 +24,19 @@
 
 void		get_player_name(t_game_state *game)
 {
-
-	int ret;
-	char *name;
+	int		ret;
+	char	*name;
 
 	ret = 0;
-	ft_printf("Hi! Let's play Connect Four together. ");
-	ft_printf("First things first, what's your name ?\t(maximum 32 characters)\n");
-	while(1)
+	ft_printf("Hi! Let's play Connect Four together. First things first, ");
+	ft_printf("what's your name ?\t(maximum 32 characters)\n");
+	while (1)
 	{
 		ret = get_next_line(STDIN_FILENO, &name);
 		if (ret == -1)
 		{
-			ft_printf(">>>>ERROR : get_next_line could not fetch the player name\n");
-			break;
+			ft_printf(">>ERROR : gnl could not fetch the player name\n");
+			break ;
 		}
 		else if (ret == 1 && ft_strlen(name) > 32)
 		{
@@ -47,34 +46,22 @@ void		get_player_name(t_game_state *game)
 		else if (ret == 1)
 		{
 			game->player_name = name;
-			break;
+			break ;
 		}
 		else
 		{
-			ft_printf(">>>>ERROR : player name does have anything to read\n");
-			break;
+			ft_printf(">>ERROR : player name does have anything to read\n");
+			break ;
 		}
 	}
 }
 
-
-
 /*
-** booleen function which test if the column is empty or not i.e is it 
-** possible to play or not.
-*/
-
-bool		is_move_possible(t_game_state *game, unsigned col)
-{
-	return (col < game->width && ARRAY_GETL(uint8_t, &game->board, col) == EMPTY);
-}
-
-/* 
 ** function which fetch the column selected by the player
 ** return : -1 if wrong or the index of the column
 */
 
-int	get_player_move(t_game_state *game)
+int			get_player_move(t_game_state *game)
 {
 	int		move;
 	int		ret;
@@ -84,15 +71,15 @@ int	get_player_move(t_game_state *game)
 	move = 0;
 	ret = 0;
 	ft_printf("What are you going to play ?\n");
-	while(1)
+	while (1)
 	{
 		ret = get_next_line(STDIN_FILENO, &str);
 		if (ret == -1)
 		{
-			ft_printf(">>>>ERROR : get_next_line could not fetch the column\n");
-			break;
+			ft_printf(">>ERROR : get_next_line could not fetch the column\n");
+			break ;
 		}
-		else if (ret == 1 
+		else if (ret == 1
 			&& (((move = ft_atoi(str)) < 1) || !is_move_possible(game, --move)))
 		{
 			ft_printf("Sorry, I did not understand.\n");
@@ -102,21 +89,21 @@ int	get_player_move(t_game_state *game)
 			return (move);
 		else
 		{
-			ft_printf(">>>>ERROR : player column fetch does have anything to read\n");
-			break;
+			ft_printf(">>ERROR : player column fetch does have anything to read\n");
+			break ;
 		}
 	}
 	return (-1);
 }
 
-void ft_wait(unsigned time)
+void		ft_wait(unsigned time)
 {
 	unsigned idx;
 
 	idx = 1;
 	while (time--)
 	{
-		while(idx++)
+		while (idx++)
 			;
 		idx = 1;
 	}
@@ -127,27 +114,27 @@ void ft_wait(unsigned time)
 ** return the index of the ligne on which it was inserted
 */
 
-unsigned put_jeton_gravity(t_game_state *game, unsigned col, uint8_t player)
+unsigned	put_jeton_gravity(t_game_state *game, unsigned col, uint8_t player)
 {
 	unsigned lig;
 
 	lig = 0;
 	if (game && player != EMPTY && is_move_possible(game, col)) //not necesserary just for debugging
 	{
-		//put player on lig col
+		ARRAY_GETL(uint8_t, &game->board, game->width * lig + col) = player;
 		print_board1(game);
 		while (lig + 1 < game->height && ARRAY_GETL(uint8_t, &game->board, game->width * lig + 1 + col) == EMPTY)
-		{	
+		{
 			ft_wait(42);
-			//put empty on lig col
+			ARRAY_GETL(uint8_t, &game->board, game->width * lig + col) = EMPTY;
 			lig++;
-			//put player on lig col
+			ARRAY_GETL(uint8_t, &game->board, game->width * lig + col) = player;
 			print_board1(game);
 		}
 		return (lig);
 	}
-	else 
-		ft_printf(">>>>ERROR : jeton gravity has wrong input\n");
+	else
+		ft_printf(">>ERROR : jeton gravity has wrong input\n");
 	return (lig);
 }
 
@@ -156,7 +143,7 @@ unsigned put_jeton_gravity(t_game_state *game, unsigned col, uint8_t player)
 ** return the index of the ligne on which it was inserted
 */
 
-unsigned put_jeton(t_game_state *game, unsigned col, uint8_t player)
+unsigned	put_jeton(t_game_state *game, unsigned col, uint8_t player)
 {
 	unsigned lig;
 
@@ -165,18 +152,18 @@ unsigned put_jeton(t_game_state *game, unsigned col, uint8_t player)
 	{
 		while (lig + 1 < game->height && ARRAY_GETL(uint8_t, &game->board, game->width * lig + 1 + col) == EMPTY)
 			lig++;
-		//put player on lig col
+		ARRAY_GETL(uint8_t, &game->board, game->width * lig + col) = player;
 		print_board1(game);
 		return (lig);
 	}
-	else 
-		ft_printf(">>>>ERROR : jeton insert has wrong input\n");
+	else
+		ft_printf(">>ERROR : jeton insert has wrong input\n");
 	return (lig);
 }
 
 /*
 ** Options without parameters
-** -
+** 
 ** returns true if the name matches with an existing option,
 ** false otherwise
 */
@@ -230,7 +217,7 @@ void		print_game(const t_game_state *game)
 		str_from_display(game->display));
 	ft_printf("%-*s : %s\n", length, "is_debug",
 		game->is_debug ? "true" : "false");
-	ft_printf("%s\n", fta_string((const t_array *)game, tmp_cell_to_string));
+//	ft_printf("%s\n", fta_string((const t_array *)game, tmp_cell_to_string));
 }
 
 static void	parse_arguments(t_game_state *game, int ac, char **av)
