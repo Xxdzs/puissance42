@@ -30,6 +30,8 @@ static bool	set_option(t_game_state *game, const char *name, bool is_long)
 {
 	if (is_long && !ft_strcmp(name, "debug"))
 		game->is_debug = true;
+	else if (*name == 'c' && !(is_long && ft_strcmp(name, "color")))
+		game->is_colored = true;
 	else
 		return (false);
 	return (true);

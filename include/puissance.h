@@ -55,6 +55,7 @@ typedef struct	s_game_state
 	enum e_bot		bot;
 	enum e_display	display;
 	bool			is_debug;
+	bool			is_colored;
 }				t_game_state;
 
 /*
