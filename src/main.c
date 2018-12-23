@@ -209,6 +209,13 @@ static void	set_option_wp(t_game_state *game, const char *name,
 		ft_strncpy(game->jetons, value, 3);
 }
 
+static char *tmp_cell_to_string(uint8_t *cell)
+{
+	const char *str = str_from_player(*cell);
+
+	return (ft_strdup(str ? str : "!"));
+}
+
 void		print_game(const t_game_state *game)
 {
 	const unsigned length = 12;
@@ -261,11 +268,9 @@ int			main(int ac, char **av)
 	*game = new_game_state();
 	parse_arguments(game, ac, av);
 	game_state_init(game);
-	print_game(game);
-	game->bot = BOT_RANDOM;
-	print_board1(game);
-	print_board2(game);
-//	run_game(game);
+	if (game->is_debug)
+		print_game(game);
+	run_game(game);
 	game_state_clear(game);
 	return (0);
 }
