@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@sudent.42.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/22 12:58:54 by angagnie          #+#    #+#             */
-/*   Updated: 2018/12/23 02:05:38 by jates-           ###   ########.fr       */
+/*   Updated: 2018/12/23 07:58:39 by jates-           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,14 +135,14 @@ unsigned put_jeton_gravity(t_game_state *game, unsigned col, uint8_t player)
 	if (game && player != EMPTY && is_move_possible(game, col)) //not necesserary just for debugging
 	{
 		//put player on lig col
-		print_board(game);
+		print_board1(game);
 		while (lig + 1 < game->height && ARRAY_GETL(uint8_t, &game->board, game->width * lig + 1 + col) == EMPTY)
 		{	
 			ft_wait(42);
 			//put empty on lig col
 			lig++;
 			//put player on lig col
-			print_board(game);
+			print_board1(game);
 		}
 		return (lig);
 	}
@@ -166,7 +166,7 @@ unsigned put_jeton(t_game_state *game, unsigned col, uint8_t player)
 		while (lig + 1 < game->height && ARRAY_GETL(uint8_t, &game->board, game->width * lig + 1 + col) == EMPTY)
 			lig++;
 		//put player on lig col
-		print_board(game);
+		print_board1(game);
 		return (lig);
 	}
 	else 
@@ -261,6 +261,8 @@ int			main(int ac, char **av)
 	game_state_init(game);
 	print_game(game);
 	game->bot = BOT_RANDOM;
+	print_board1(game);
+	print_board2(game);
 //	run_game(game);
 	game_state_clear(game);
 	return (0);

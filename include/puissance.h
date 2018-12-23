@@ -44,7 +44,7 @@ typedef struct	s_game_state
 	char			jetons[3];
 	enum			e_player
 	{
-		EMPTY,
+		EMPTY = 0,
 		HUMAN,
 		BOT
 	}				start_player;
@@ -62,6 +62,7 @@ uint8_t			display_from_str(const char *str);
 const char		*str_from_bot(uint8_t bot);
 const char		*str_from_display(uint8_t display);
 
-void			print_board(t_game_state *game);
+void			print_board1(t_game_state *game);
+void			print_board2(t_game_state *game);
 
 #endif

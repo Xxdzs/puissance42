@@ -16,8 +16,8 @@
 
 bool	play_round(t_game_state *game, uint8_t player)
 {
-	print_board(game);
-	ft_printf("%s\n", player)
+	print_board1(game);
+	ft_printf("%s\n", player);
 }
 
 unsigned play_random(t_game_state *game)
@@ -38,5 +38,5 @@ void	run_game(t_game_state *game)
 	while (play_round(game,
 			HUMAN + ((turn + (game->start_player == BOT)) % 2)))
 		turn++;
-	print_board(game);
+	print_board1(game);
 }
