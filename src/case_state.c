@@ -6,7 +6,7 @@
 /*   By: jates- <jates-@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/23 05:43:29 by jates-            #+#    #+#             */
-/*   Updated: 2018/12/23 13:14:30 by jates-           ###   ########.fr       */
+/*   Updated: 2018/12/23 13:20:00 by jates-           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,9 +82,8 @@ bool		iswin_case(t_game_state *game, int lig, int col, int8_t player)
 		++n;
 	if (n >= 4 && (i = -4))
 		return (true);
-	n = -1 ;
-	while (++i < 4 && (is_same_bool(game, lig + i,\
-					col - i, player) || (n = -1)))
+	n = -1;
+	while (++i < 4 && (is_same_bool(game, lig + i, col - i, player) || (n = -1)))
 		++n;
 	if (n >= 4 && (i = -4))
 		return (true);

@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@sudent.42.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/22 12:58:54 by angagnie          #+#    #+#             */
-/*   Updated: 2018/12/23 13:17:57 by jates-           ###   ########.fr       */
+/*   Updated: 2018/12/23 13:23:17 by jates-           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,14 +28,14 @@ void		get_player_name(t_game_state *game)
 	char	*name;
 
 	ret = 0;
-	ft_printf("Hi! Let's play Connect Four together. ");
-	ft_printf("First things first, what's your name ?\t(maximum 32 characters)\n");
+	ft_printf("Hi! Let's play Connect Four together. First things first, ");
+	ft_printf("what's your name ?\t(maximum 32 characters)\n");
 	while (1)
 	{
 		ret = get_next_line(STDIN_FILENO, &name);
 		if (ret == -1)
 		{
-			ft_printf(">>ERROR : get_next_line could not fetch the player name\n");
+			ft_printf(">>ERROR : gnl could not fetch the player name\n");
 			break ;
 		}
 		else if (ret == 1 && ft_strlen(name) > 32)
@@ -71,7 +71,7 @@ int			get_player_move(t_game_state *game)
 	move = 0;
 	ret = 0;
 	ft_printf("What are you going to play ?\n");
-	while(1)
+	while (1)
 	{
 		ret = get_next_line(STDIN_FILENO, &str);
 		if (ret == -1)
@@ -79,7 +79,7 @@ int			get_player_move(t_game_state *game)
 			ft_printf(">>ERROR : get_next_line could not fetch the column\n");
 			break;
 		}
-		else if (ret == 1 
+		else if (ret == 1
 			&& (((move = ft_atoi(str)) < 1) || !is_move_possible(game, --move)))
 		{
 			ft_printf("Sorry, I did not understand.\n");
@@ -90,7 +90,7 @@ int			get_player_move(t_game_state *game)
 		else
 		{
 			ft_printf(">>ERROR : player column fetch does have anything to read\n");
-			break;
+			break ;
 		}
 	}
 	return (-1);
