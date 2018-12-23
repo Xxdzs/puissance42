@@ -98,17 +98,17 @@ int			get_player_move(t_game_state *game)
 }
 
 /*
-** custom made function to wait
+** custom made function to sleep
 */
 
-void		ft_wait(unsigned time)
+void ft_sleep(unsigned tempo)
 {
-	unsigned idx;
+	unsigned short idx;
 
 	idx = 1;
-	while (time--)
+	while (tempo--)
 	{
-		while (idx++)
+		while(idx++)
 			;
 		idx = 1;
 	}
@@ -130,10 +130,12 @@ unsigned	put_jeton_gravity(t_game_state *game, unsigned col, uint8_t player)
 		print_board(game);
 		while (lig + 1 < game->height && ARRAY_GETL(uint8_t, &game->board, game->width * lig + 1 + col) == EMPTY)
 		{
-			ft_wait(42);
+			
 			ARRAY_GETL(uint8_t, &game->board, game->width * lig + col) = EMPTY;
 			lig++;
 			ARRAY_GETL(uint8_t, &game->board, game->width * lig + col) = player;
+			ft_sleep(1848);
+			ft_printf("\033[%dA", (game->display == 1) ? game->height + 2 : game->height * 4 + 1);
 			print_board(game);
 		}
 		return (lig);
