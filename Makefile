@@ -24,8 +24,6 @@ CCHPATH:=cache/
 SRCPATH:=src/
 LIBPATH:=libft/
 HDRPATH:=include/
-LFLAGS=$(addprefix -L,$(LIBPATH))
-LFLAGS+=$(addprefix -l,$(LIBS))
 CFLAGS:=-Wall -Wextra -ansi -I $(HDRPATH) -I $(LIBPATH)$(HDRPATH)
 # ==================
 
