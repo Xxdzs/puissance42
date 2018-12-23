@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@sudent.42.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/23 13:49:12 by angagnie          #+#    #+#             */
-/*   Updated: 2018/12/23 14:15:05 by angagnie         ###   ########.fr       */
+/*   Updated: 2018/12/23 19:42:49 by jates-           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ unsigned			play_prompt(t_game_state *game)
 bool				play_bot(t_game_state *game)
 {
 	unsigned (*const functions[])() = {
-		do_nothing_at_all
+		do_nothing_at_all,
 		&play_prompt,
 		&play_random,
 		&play_random,
