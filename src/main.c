@@ -59,16 +59,6 @@ void		get_player_name(t_game_state *game)
 
 
 
-/*
-** booleen function which test if the column is empty or not i.e is it 
-** possible to play or not.
-*/
-
-bool		is_move_possible(t_game_state *game, unsigned col)
-{
-	return (col < game->width && ARRAY_GETL(uint8_t, &game->board, col) == EMPTY);
-}
-
 /* 
 ** function which fetch the column selected by the player
 ** return : -1 if wrong or the index of the column

@@ -25,7 +25,7 @@
 t_game_state	new_game_state(void)
 {
 	return ((t_game_state){
-				.board = NEW_ARRAY(uint8_t),
+				.board = NEW_ARRAY(enum e_player),
 				.player_name = "Player",
 				.width = 7,
 				.height = 6,
@@ -124,7 +124,7 @@ void			print_board2(const t_game_state *game)
 		while (j++ < game->width)
 		{
 			cell = ARRAY_GETL(uint8_t, &(game->board), game->width * i + j);
-			ft_printf("| %hhd ", (game->jetons + cell), 1);
+			ft_printf("| %d ", (game->jetons + cell), 1);
 		}
 		ft_printf("|% 3d|\n", (game->height - i++) % 1000);
 		draw_ligne(game->width * 4 + 1, '_');
