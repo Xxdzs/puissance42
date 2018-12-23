@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@sudent.42.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/22 15:10:07 by angagnie          #+#    #+#             */
-/*   Updated: 2018/12/22 22:38:40 by angagnie         ###   ########.fr       */
+/*   Updated: 2018/12/23 12:05:49 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,8 @@ g_bots_str[] = {
 static const char *const
 g_displays_str[] = {
 	"NONE",
-	"SIMPLE"
+	"SIMPLE",
+	"NUMBERS"
 };
 
 uint8_t		bot_from_str(const char *str)
