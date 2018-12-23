@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@sudent.42.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/22 12:58:54 by angagnie          #+#    #+#             */
-/*   Updated: 2018/12/23 00:17:11 by jates-           ###   ########.fr       */
+/*   Updated: 2018/12/23 01:49:49 by jates-           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "libft.h"
 #include "ft_printf.h"
 #include "ft_array.h"
-
+#include "get_next_line.h"
 #include <stdbool.h>
 
 /*
@@ -28,7 +28,7 @@ void		get_player_name(t_game_state *game)
 	char *name;
 
 	ret = 0;
-	printf("Hi! Let's play Connect Four together. ")i;
+	ft_printf("Hi! Let's play Connect Four together. ");
 	ft_printf("First things first, what's your name ?\t(maximum 32 characters)\n");
 	while(1)
 	{
@@ -40,7 +40,7 @@ void		get_player_name(t_game_state *game)
 		}
 		else if (ret == 1 && ft_strlen(name) > 32)
 		{
-			ft_printf("Sorry, I did not understand.\n")
+			ft_printf("Sorry, I did not understand.\n");
 			ft_printf("Could you tell me again your name ?\t(max 32 chars)\n");
 		}
 		else if (ret == 1)
@@ -56,22 +56,54 @@ void		get_player_name(t_game_state *game)
 	}
 }
 
+/*
+** booleen function which test if the column is empty or not i.e is it 
+** possible to play or not.
+*/
+
 bool		is_move_possible(t_game_state *game, unsigned col)
 {
-			if (col > width)
-				return (0);
-			else if (!(game->board-> )) //check that the cell col last ligne is empty
-				return (1);
-			else
-				return (0);							
+	return (col < game->width && ARRAY_GETL(uint8_t, &game->board, col) == EMPTY);
 }
 
-void		get_player_move()
-{
-	uint8_t	move;
+/* 
+** function which fetch the column selected by the player
+** return : -1 if wrong or the index of the column
+*/
 
+int	get_player_move(t_game_state *game)
+{
+	int		move;
+	int		ret;
+	char	*str;
+
+	str = NULL;
 	move = 0;
-	printf("What are you going to play ?\n")
+	ret = 0;
+	ft_printf("What are you going to play ?\n");
+	while(1)
+	{
+		ret = get_next_line(STDIN_FILENO, &str);
+		if (ret == -1)
+		{
+			ft_printf(">>>>ERROR : get_next_line could not fetch the column\n");
+			break;
+		}
+		else if (ret == 1 
+			&& (((move = ft_atoi(str)) < 1) || !is_move_possible(game, --move)))
+		{
+			ft_printf("Sorry, I did not understand.\n");
+			ft_printf("Could you tell me your choice ?\n");
+		}
+		else if (ret == 1)
+			return (move);
+		else
+		{
+			ft_printf(">>>>ERROR : player column fetch does have anything to read\n");
+			break;
+		}
+	}
+	return (-1);
 }
 
 
@@ -159,7 +191,7 @@ int			main(int ac, char **av)
 	parse_arguments(game, ac, av);
 	print_game(game);
 	game_state_init(game);
-	run_game(game);
+//	run_game(game);
 	game_state_clear(game);
 	return (0);
 }
