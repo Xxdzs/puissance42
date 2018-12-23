@@ -13,7 +13,15 @@
 # ==== Editable ====
 NAME:=puissance4
 
-FILES= board_puissance main enum run case_state
+FILES= board_puissance \
+		case_state \
+		display \
+		enum \
+		julia \
+		main \
+		none \
+		play \
+		run  
 
 LIB_FILES= libft.a
 # ==================
