@@ -75,7 +75,7 @@ void		print_game(const t_game_state *game)
 		str_from_display(game->display));
 	ft_printf("%-*s : %s\n", length, "is_debug",
 		game->is_debug ? "true" : "false");
-	ft_printf("%s\n", fta_string((const t_array *)game, tmp_cell_to_string));
+	ft_printf("%s\n\n", fta_string((const t_array *)game, tmp_cell_to_string));
 }
 
 static void	parse_arguments(t_game_state *game, int ac, char **av)

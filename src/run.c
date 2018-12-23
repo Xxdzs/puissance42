@@ -30,6 +30,7 @@ void		run_game(t_game_state *game)
 {
 	unsigned	turn;
 
+	get_player_name(game);
 	turn = 0;
 	while (turn < 5 && play_round(game,
 			HUMAN + ((turn + (game->start_player == BOT)) % 2)))

@@ -30,7 +30,7 @@ void		get_player_name(t_game_state *game)
 
 	ret = 0;
 	ft_printf("Hi! Let's play Connect Four together. First things first, ");
-	ft_printf("what's your name ?\t(maximum 32 characters)\n");
+	ft_printf("what's your name ?\n");
 	while (1)
 	{
 		ret = get_next_line(STDIN_FILENO, &name);
