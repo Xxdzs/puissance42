@@ -61,6 +61,7 @@ uint8_t			bot_from_str(const char *str);
 uint8_t			display_from_str(const char *str);
 const char		*str_from_bot(uint8_t bot);
 const char		*str_from_display(uint8_t display);
+const char		*str_from_player(uint8_t player);
 
 void			print_board1(t_game_state *game);
 void			print_board2(t_game_state *game);

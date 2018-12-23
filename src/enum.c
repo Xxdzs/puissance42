@@ -64,3 +64,16 @@ const char	*str_from_display(uint8_t display)
 		return (g_displays_str[display]);
 	return (NULL);
 }
+
+const char	*str_from_player(uint8_t player)
+{
+	const char *const players_str[] = {
+		"EMPTY",
+		"HUMAN",
+		"BOT"
+	};
+
+	if (player <= BOT)
+		return (players_str[player]);
+	return (NULL);
+}
