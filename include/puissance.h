@@ -6,7 +6,7 @@
 /*   By: jates- <jates-@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/22 12:41:29 by jates-            #+#    #+#             */
-/*   Updated: 2018/12/23 14:40:02 by angagnie         ###   ########.fr       */
+/*   Updated: 2018/12/23 20:01:49 by sid              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,9 @@ void			game_state_clear(t_game_state *game);
 void			run_game(t_game_state *game);
 void			print_board(const t_game_state *game);
 bool			is_move_possible(const t_game_state *game, unsigned col);
-bool			iswin_case(t_game_state *game, int lig,\
+unsigned		play_bot(t_game_state *game);
+unsigned		play_prompt(t_game_state *game);
+bool			iswin_case(t_game_state *game, int lig,
 				int col, int8_t player);
 
 /*
@@ -87,19 +89,20 @@ const char		*str_from_player(uint8_t player);
 /*
 ** Type of bots
 */
+
 unsigned		play_random(t_game_state *game);
 unsigned		play_prompt(t_game_state *game);
-bool			play_bot(t_game_state *game);
+unsigned		play_bot(t_game_state *game);
 
-/* 
+/*
 ** Info fetching functions
 */
 
-void		get_player_name(t_game_state *game);
-int			get_player_move(t_game_state *game);
-unsigned	put_jeton_gravity(t_game_state *game,\
+void			get_player_name(t_game_state *game);
+int				get_player_move(t_game_state *game);
+unsigned		put_jeton_gravity(t_game_state *game,
 			unsigned col, uint8_t player);
-unsigned	put_jeton(t_game_state *game,\
+unsigned		put_jeton(t_game_state *game,
 			unsigned col, uint8_t player);
 
 void			do_nothing_at_all();

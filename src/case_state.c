@@ -17,7 +17,7 @@
 ** possible to play or not.
 */
 
-bool		is_move_possible(t_game_state *game, unsigned col)
+bool		is_move_possible(const t_game_state *game, unsigned col)
 {
 	return (col < game->width
 			&& ARRAY_GETL(uint8_t, &game->board, col) == EMPTY);

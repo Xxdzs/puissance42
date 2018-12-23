@@ -6,17 +6,19 @@
 /*   By: angagnie <angagnie@sudent.42.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/23 13:49:12 by angagnie          #+#    #+#             */
-/*   Updated: 2018/12/23 19:42:49 by jates-           ###   ########.fr       */
+/*   Updated: 2018/12/23 19:55:43 by sid              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "puissance.h"
 #include "ft_printf.h"
+#include "libft.h"
+#include "get_next_line.h"
 
 #include <stdbool.h>
 #include <stdlib.h>
 
-static unsigned		play_random(t_game_state *game)
+unsigned			play_random(t_game_state *game)
 {
 	unsigned move;
 
@@ -31,21 +33,21 @@ unsigned			play_prompt(t_game_state *game)
 	char	*line;
 	int		ans;
 
-	if (get_nex_line(0, &line) < 0)
+	if (get_next_line(0, &line) < 0)
 		return (0);
 	ans = ft_atoi(line) - 1;
-	return (0 <= ans && ans < game->width ? ans : 0);
+	return (0 <= ans && (unsigned)ans < game->width ? ans : 0);
 }
 
-bool				play_bot(t_game_state *game)
+unsigned			play_bot(t_game_state *game)
 {
 	unsigned (*const functions[])() = {
-		do_nothing_at_all,
+		(void*)&do_nothing_at_all,
 		&play_prompt,
 		&play_random,
 		&play_random,
 		&play_random
 	};
 
-	function[game->bot](game);
+	return (functions[game->bot](game));
 }
