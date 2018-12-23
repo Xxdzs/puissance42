@@ -75,7 +75,7 @@ void			print_board(const t_game_state *game);
 bool			is_move_possible(const t_game_state *game, unsigned col);
 unsigned		play_bot(t_game_state *game);
 unsigned		play_prompt(t_game_state *game);
-bool			iswin_case(t_game_state *game, int lig,
+bool			iswin_case(const t_game_state *game, int lig,
 				int col, int8_t player);
 
 /*
