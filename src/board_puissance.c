@@ -43,7 +43,7 @@ void			game_state_init(t_game_state *game)
 
 	fta_reserve((t_array*)game, size);
 	game->board.size = size;
-	ft_memset(game->board.data, EMPTY, sizegi);
+	ft_memset(game->board.data, EMPTY, size);
 	game->start_player = (rand() % 2) ? HUMAN : BOT;
 }
 
