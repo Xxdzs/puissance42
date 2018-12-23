@@ -112,7 +112,7 @@ static void	set_option_wp(t_game_state *game, const char *name,
 
 void		print_game(t_game_state *game)
 {
-	const unsigned length = 15;
+	const unsigned length = 12;
 
 	ft_printf("\n%-*s : %u\n", length, "width", game->width);
 	ft_printf("%-*s : %u\n", length, "height", game->height);
@@ -124,7 +124,7 @@ void		print_game(t_game_state *game)
 		str_from_display(game->display));
 }
 
-void		parse_arguments(t_game_state *game, int ac, char **av)
+static void	parse_arguments(t_game_state *game, int ac, char **av)
 {
 	bool			is_long;
 	const char		*name;
@@ -153,13 +153,13 @@ void		parse_arguments(t_game_state *game, int ac, char **av)
 
 int			main(int ac, char **av)
 {
-	t_game_state	game;
+	t_game_state	game[1];
 
-	game = new_game_state();
-	parse_arguments(&game, ac, av);
-	print_game(&game);
-	game_state_init(&game);
-	print_board(&game);
-	game_state_clear(&game);
+	*game = new_game_state();
+	parse_arguments(game, ac, av);
+	print_game(game);
+	game_state_init(game);
+	run_game(game);
+	game_state_clear(game);
 	return (0);
 }
