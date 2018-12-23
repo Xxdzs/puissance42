@@ -64,31 +64,26 @@ int			is_same_case(t_game_state *game, int lig, int col, int8_t player)
 ** booleen function which test if the column if the move is winner
 */
 
-bool		iswin_case(t_game_state *game, int lig, int col, int8_t player)
+bool		iswin_case(const t_game_state *game, int lig, int col, int8_t player)
 {
-	int i;
-	int n;
+	int			a;
+	int			i;
+	int			j;
+	unsigned	n;
 
-	n = -1;
-	i = -4;
-	while (++i < 4 && (is_same_bool(game, lig, col - i, player) || (n = -1)))
-		++n;
-	if (n >= 4 && (i = -4))
-		return (true);
-	n = -1;
-	i = -4;
-	while (++i < 4 && (is_same_bool(game, lig - i,\
-					col - i, player) || (n = -1)))
-		++n;
-	if (n >= 4 && (i = -4))
-		return (true);
-	n = -1;
-	while (++i < 4 && (is_same_bool(game, lig + i, col - i, player) || (n = -1)))
-		++n;
-	if (n >= 4 && (i = -4))
-		return (true);
-	n = -1;
-	while (++i < 0 && (is_same_bool(game, lig + i, col, player) || (n = -1)))
-		++n;
-	return (n >= 4);
+	a = 9;
+	while (a-- > 0)
+	{
+		i = (a % 3) - 1;
+		j = (a / 3) - 1;
+		if (i == 0 && j != 1)
+			continue ;
+		n = 0;
+		while (++n < 4)
+			if (ARRAY_GETL(uint8_t, &(game->board), game->width * (lig + j * n) + col + i * n) != player)
+				break ;
+		if (n == 4)
+			return (true);
+	}
+	return (false);
 }

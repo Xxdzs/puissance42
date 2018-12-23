@@ -30,6 +30,11 @@ bool		play_round(t_game_state *game, uint8_t player)
 		game->winner = (player == BOT ? HUMAN : BOT);
 		return (false);
 	}
+	if (iswin_case(game, column_top(game, column) + 1, column, player))
+	{
+		game->winner = player;
+		return (false);
+	}
 	return (true);
 }
 
