@@ -58,7 +58,7 @@ void			game_state_clear(t_game_state *game)
 ** Function which prints the board simplely
 */
 
-void			print_board1(t_game_state *game)
+void			print_board1(const t_game_state *game)
 {
 	unsigned	i;
 	unsigned	j;
@@ -104,7 +104,7 @@ static void		draw_ligne(size_t size, char c)
 		write(1, str, size + 1);
 }
 
-void			print_board2(t_game_state *game)
+void			print_board2(const t_game_state *game)
 {
 	unsigned	i;
 	unsigned	j;

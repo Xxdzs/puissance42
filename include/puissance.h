@@ -38,7 +38,7 @@ enum	e_bot
 typedef struct	s_game_state
 {
 	t_array			board;
-	char			*player_name;
+	const char		*player_name;
 	unsigned		width;
 	unsigned		height;
 	char			jetons[3];
@@ -56,6 +56,7 @@ typedef struct	s_game_state
 t_game_state	new_game_state(void);
 void			game_state_init(t_game_state *game);
 void			game_state_clear(t_game_state *game);
+void			run_game(t_game_state *game);
 
 uint8_t			bot_from_str(const char *str);
 uint8_t			display_from_str(const char *str);
@@ -63,7 +64,7 @@ const char		*str_from_bot(uint8_t bot);
 const char		*str_from_display(uint8_t display);
 const char		*str_from_player(uint8_t player);
 
-void			print_board1(t_game_state *game);
-void			print_board2(t_game_state *game);
+void			print_board1(const t_game_state *game);
+void			print_board2(const t_game_state *game);
 
 #endif
