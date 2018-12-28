@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@sudent.42.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/22 12:58:54 by angagnie          #+#    #+#             */
-/*   Updated: 2018/12/23 14:10:13 by jates-           ###   ########.fr       */
+/*   Updated: 2018/12/28 16:56:58 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ static bool	set_option(t_game_state *game, const char *name, bool is_long)
 		game->is_debug = true;
 	else if (*name == 'c' && !(is_long && ft_strcmp(name, "color")))
 		game->is_colored = true;
+	else if (*name == 'a' && !(is_long && ft_strcmp(name, "animated")))
+		game->is_animated = true;
 	else
 		return (false);
 	return (true);

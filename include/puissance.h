@@ -6,7 +6,7 @@
 /*   By: jates- <jates-@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/22 12:41:29 by jates-            #+#    #+#             */
-/*   Updated: 2018/12/28 16:12:15 by angagnie         ###   ########.fr       */
+/*   Updated: 2018/12/28 16:56:24 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ typedef struct	s_game_state
 	enum e_display	display;
 	bool			is_debug;
 	bool			is_colored;
+	bool			is_animated;
 }				t_game_state;
 
 /*

@@ -6,7 +6,7 @@
 /*   By: jates- <jates-@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/22 12:24:50 by jates-            #+#    #+#             */
-/*   Updated: 2018/12/23 14:40:55 by angagnie         ###   ########.fr       */
+/*   Updated: 2018/12/28 16:57:22 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,8 @@ t_game_state	new_game_state(void)
 				.bot = BOT_GREEDY,
 				.display = DISPLAY_SIMPLE,
 				.is_debug = false,
-				.is_colored = false
+				.is_colored = false,
+				.is_animated = false
 		});
 }
 
