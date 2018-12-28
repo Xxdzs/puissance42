@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@sudent.42.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/22 23:15:32 by angagnie          #+#    #+#             */
-/*   Updated: 2018/12/23 22:53:04 by jates-           ###   ########.fr       */
+/*   Updated: 2018/12/28 16:12:01 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ bool		play_round(t_game_state *game, uint8_t player)
 	print_board(game);
 	ft_printf("It is the %s's turn\n", player_str);
 	column = (player == HUMAN ? play_prompt(game) : play_bot(game));
-	if (!put_jeton(game, column, player))
+	if (!put_jeton_gravity(game, column, player))
 	{
 		ft_printf("The %s played a wrong move, and lost\n", player_str);
 		game->winner = (player == BOT ? HUMAN : BOT);

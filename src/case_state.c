@@ -6,7 +6,7 @@
 /*   By: jates- <jates-@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/23 05:43:29 by jates-            #+#    #+#             */
-/*   Updated: 2018/12/23 13:20:00 by jates-           ###   ########.fr       */
+/*   Updated: 2018/12/28 17:14:58 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ bool		is_move_possible(const t_game_state *game, unsigned col)
 ** return if (the cell == player)
 */
 
-bool		same_bool(t_game_state *game, int lig, int col, int8_t player)
+bool		same_bool(const t_game_state *game, int lig, int col, int8_t player)
 {
 	int8_t	cell;
 
@@ -64,27 +64,30 @@ int			is_same_case(t_game_state *game, int lig, int col, int8_t player)
 ** booleen function which test if the column if the move is winner
 */
 
-bool		iswin_case(const t_game_state *game, int lig,\
+bool		iswin_case(const t_game_state *game, int lig,
 			int col, int8_t player)
 {
-	int			a;
-	int			i;
-	int			j;
-	unsigned	n;
+	int		a;
+	int		n;
+	int		i;
+	int		j;
+	int		c;
 
-	a = 9;
+	a = 6;
 	while (a-- > 0)
 	{
-		i = (a % 3) - 1;
-		j = (a / 3) - 1;
+		c = 0;
+		i = a % 2;
+		j = (a / 2) - 1;
 		if (i == 0 && j != 1)
 			continue ;
 		n = 0;
-		while (++n < 4)
-			if (ARRAY_GETL(uint8_t, &(game->board), game->width * \
-			(lig + j * n) + col + i * n) != player)
-				break ;
-		if (n == 4)
+		while (n++ < 3 && same_bool(game, lig + j * n, col + i * n, player))
+			c++;
+		n = 0;
+		while (n-- > -3 && same_bool(game, lig + j * n, col + i * n, player))
+			c++;
+		if (c > 2)
 			return (true);
 	}
 	return (false);

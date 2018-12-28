@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@sudent.42.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/23 12:07:04 by angagnie          #+#    #+#             */
-/*   Updated: 2018/12/23 22:55:37 by jates-           ###   ########.fr       */
+/*   Updated: 2018/12/28 16:10:32 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,6 @@ static void			print_board_simple(const t_game_state *game)
 		ft_printf("%d\n", (game->height - i) % 10);
 		i++;
 	}
-	write(1, " ", 1);
 	print_number_simple(game);
 }
 

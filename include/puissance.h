@@ -6,7 +6,7 @@
 /*   By: jates- <jates-@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/22 12:41:29 by jates-            #+#    #+#             */
-/*   Updated: 2018/12/23 20:01:49 by sid              ###   ########.fr       */
+/*   Updated: 2018/12/28 16:12:15 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,7 @@ unsigned		play_bot(t_game_state *game);
 
 void			get_player_name(t_game_state *game);
 int				get_player_move(t_game_state *game);
-unsigned		put_jeton_gravity(t_game_state *game,
+bool			put_jeton_gravity(t_game_state *game,
 			unsigned col, uint8_t player);
 bool			put_jeton(t_game_state *game,
 			unsigned col, uint8_t player);

@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@sudent.42.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/23 12:07:04 by angagnie          #+#    #+#             */
-/*   Updated: 2018/12/23 22:55:37 by jates-           ###   ########.fr       */
+/*   Updated: 2018/12/28 16:14:29 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ void			ft_sleep(unsigned tempo)
 ** return the index of the ligne on which it was inserted
 */
 
-unsigned		put_jeton_gravity(t_game_state *game,\
+bool		put_jeton_gravity(t_game_state *game,\
 				unsigned col, uint8_t player)
 {
 	unsigned lig;
@@ -71,7 +71,7 @@ unsigned		put_jeton_gravity(t_game_state *game,\
 		ARRAY_GETL(uint8_t, &game->board, game->width * lig + col) = player;
 		print_board(game);
 		while (lig + 1 < game->height \
-		&& ARRAY_GETL(uint8_t, &game->board, game->width * lig + 1 + col) == EMPTY)
+			&& ARRAY_GETL(uint8_t, &game->board, game->width * (lig + 1) + col) == EMPTY)
 		{
 
 			ARRAY_GETL(uint8_t, &game->board, game->width * lig + col) = EMPTY;
@@ -82,9 +82,8 @@ unsigned		put_jeton_gravity(t_game_state *game,\
 			(game->display == 1) ? game->height + 2 : game->height * 4 + 1);
 			print_board(game);
 		}
-		return (lig);
+		return (true);
 	}
-	else
-		ft_printf(">>ERROR : jeton gravity has wrong input\n");
-	return (lig);
+	ft_printf(">>ERROR : jeton gravity has wrong input\n");
+	return (false);
 }
