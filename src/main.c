@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@sudent.42.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/22 12:58:54 by angagnie          #+#    #+#             */
-/*   Updated: 2018/12/28 16:56:58 by angagnie         ###   ########.fr       */
+/*   Updated: 2018/12/28 17:30:45 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,10 +46,20 @@ static bool	set_option(t_game_state *game, const char *name, bool is_long)
 static void	set_option_wp(t_game_state *game, const char *name,
 						const char *value, bool is_long)
 {
+	int		input;
+
 	if (*name == 'w' && !(is_long && ft_strcmp(name, "width")))
-		game->width = ft_atoi(value);
+	{
+		input = ft_atoi(value);
+		if (input > 7)
+			game->width = input;
+	}
 	else if (*name == 'h' && !(is_long && ft_strcmp(name, "height")))
-		game->height = ft_atoi(value);
+	{
+		input = ft_atoi(value);
+		if (input > 6)
+			game->height = input;
+	}
 	else if (*name == 'b' && !(is_long && ft_strcmp(name, "bot")))
 		game->bot = bot_from_str(value);
 	else if (*name == 'd' && !(is_long && ft_strcmp(name, "display")))

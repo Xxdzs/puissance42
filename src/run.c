@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@sudent.42.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/22 23:15:32 by angagnie          #+#    #+#             */
-/*   Updated: 2018/12/28 17:05:54 by angagnie         ###   ########.fr       */
+/*   Updated: 2018/12/28 17:29:19 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,9 @@ void		run_game(t_game_state *game)
 	unsigned	turn;
 
 	turn = 0;
-	while (turn < 42 && play_round(game,
-			HUMAN + ((turn + (game->start_player == BOT)) % 2)))
+	while (turn < game->width * game->height
+		   && play_round(game,
+				HUMAN + ((turn + (game->start_player == BOT)) % 2)))
 		turn++;
 	print_board(game);
 	if (game->winner == EMPTY)

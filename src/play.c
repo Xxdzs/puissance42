@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@sudent.42.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/23 13:49:12 by angagnie          #+#    #+#             */
-/*   Updated: 2018/12/23 22:11:03 by sid              ###   ########.fr       */
+/*   Updated: 2018/12/28 17:25:49 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ unsigned			play_greedy(t_game_state *game)
 	if ((col = winning_column(game, &layer, HUMAN)) < game->width)
 		return (col);
 	fta_clear((t_array *)&layer);
-	return (0);
+	return (play_random(game));
 }
 
 unsigned			play_bot(t_game_state *game)
